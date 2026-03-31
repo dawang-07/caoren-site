@@ -1,85 +1,139 @@
+// ===== 主动导航链接 =====
+function initActiveNav() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.section');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === entry.target.id) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }, { threshold: 0.5 });
+
+    sections.forEach(section => observer.observe(section));
+}
+
 // ===== 弹窗功能 =====
 function initModal() {
     const backdrop = document.getElementById('modalBackdrop');
-    const dialog = document.getElementById('dialog-default');
-    const cards = document.querySelectorAll('.quest-card');
-    const modalContent = document.getElementById('modal-content');
+    const modalContent = backdrop.querySelector('.modal-content');
+    const modalTitle = backdrop.querySelector('.modal-title');
+    const modalBody = backdrop.querySelector('.modal-body');
+    const hiddenContent = document.getElementById('modal-hidden-content');
+    const timelineItems = document.querySelectorAll('.timeline-item');
     
-    cards.forEach(card => {
-        card.addEventListener('click', () => {
-            const modalId = card.getAttribute('data-modal-target');
-            const title = card.querySelector('h3.title').textContent;
-            const content = modalContent.querySelector(`#${modalId}`).innerHTML;
+    timelineItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const modalId = item.getAttribute('data-modal-target');
+            const title = item.querySelector('h3').textContent;
+            const content = hiddenContent.querySelector(`[data-id="${modalId}"]`).innerHTML;
             
-            dialog.querySelector('.title').textContent = title;
-            dialog.querySelector('.dialog-body').innerHTML = content;
+            modalTitle.textContent = `档案: ${title}`;
+            modalBody.innerHTML = content;
             
+            typewriter(modalBody); // 应用打字机效果
             backdrop.classList.add('active');
-            dialog.showModal();
+            document.body.style.overflow = 'hidden';
         });
     });
-    
-    if (backdrop) {
-        // 关闭按钮
-        dialog.querySelector('button').addEventListener('click', (e) => {
-            e.preventDefault();
-            closeModal();
-        });
-        
-        // 点击背景关闭
-        backdrop.addEventListener('click', (e) => {
-            if (e.target === backdrop) {
-                closeModal();
-            }
-        });
 
-        // ESC 键
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-    }
+    const closeModal = () => {
+        backdrop.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    backdrop.querySelector('.modal-close').addEventListener('click', closeModal);
+    backdrop.addEventListener('click', (e) => {
+        if (e.target === backdrop) {
+            closeModal();
+        }
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 }
 
-function closeModal() {
-    const backdrop = document.getElementById('modalBackdrop');
-    const dialog = document.getElementById('dialog-default');
-    backdrop.classList.remove('active');
-    dialog.close();
+// ===== 打字机效果 =====
+function typewriter(element) {
+    const allElements = element.querySelectorAll('h4, li, span, div');
+    allElements.forEach(el => {
+        const text = el.innerHTML; // 保留 HTML 标签
+        el.innerHTML = '';
+        el.style.visibility = 'hidden';
+
+        setTimeout(() => {
+            el.style.visibility = 'visible';
+            let i = 0;
+            const timer = setInterval(() => {
+                if (i < text.length) {
+                    // 检查是否是标签的开始
+                    if (text.charAt(i) === '<') {
+                        const tagEnd = text.indexOf('>', i);
+                        if (tagEnd !== -1) {
+                            el.innerHTML += text.substring(i, tagEnd + 1);
+                            i = tagEnd;
+                        }
+                    } else {
+                        el.innerHTML += text.charAt(i);
+                    }
+                    i++;
+                } else {
+                    clearInterval(timer);
+                }
+            }, 10); // 打字速度
+        }, Math.random() * 200);
+    });
+}
+
+// ===== 滚动动画 =====
+function initScrollAnimations() {
+    const elementsToAnimate = document.querySelectorAll('.hud-panel, .module-card, .timeline-item, .arsenal-card');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    elementsToAnimate.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
 }
 
 // ===== 初始化 =====
 function init() {
     try {
+        initActiveNav();
         initModal();
-        console.log('✅ Pixel RPG Adventure Initialized!');
+        initScrollAnimations();
+        console.log('✅ Cyber-Pixel Engine Initialized!');
     } catch (error) {
-        console.error('❌ Initialization error:', error);
+        console.error('❌ Engine Failure:', error);
     }
 }
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
+document.addEventListener('DOMContentLoaded', init);
 
 // ===== 控制台彩蛋 =====
-console.log(`
-%c
-  /\_/\  
- ( o.o ) 
-  > ^ <  
-%c
-Welcome to the Pixel RPG Adventure!
-
-NAME: CAO REN
-CLASS: 素材创意专家
-LEVEL: 8
-
-Ready to start?
-`, 
-'font-family: monospace; color: #f7d51d;',
-'font-family: "Press Start 2P", monospace; color: #92cc47;'
-);
+console.log(`%c
+   ██████╗ ██╗   ██╗ ██████╗ ███████╗ ██████╗ 
+  ██╔════╝ ██║   ██║ ██╔══██╗ ██╔════╝ ██╔══██╗
+  ██║      ██║   ██║ ██████╔╝ █████╗   ██████╔╝
+  ██║      ██║   ██║ ██╔══██╗ ██╔══╝   ██╔══██╗
+  ╚██████╗ ╚██████╔╝ ██║  ██║ ███████╗ ██║  ██║
+   ╚═════╝  ╚═════╝  ╚═╝  ╚═╝ ╚══════╝ ╚═╝  ╚═╝
+                                               
+%c[SYSTEM ONLINE] Welcome, Operator.`, 
+'font-family: monospace; color: #f92572;', 
+'font-family: monospace; color: #00e5ff;');

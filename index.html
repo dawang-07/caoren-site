@@ -3,144 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>曹仁 - 像素 RPG 冒险</title>
+    <title>曹仁 - 赛博电玩 HUD</title>
     <meta name="description" content="8 年游戏买量素材经验，擅长 SLG/MMO/MOBA/三消/卡牌全品类，CTR 从 0.9% 提升至 2.2%，CPI 从$10 降至$1.6">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=pixel-v1">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=cyber-pixel-v1">
 </head>
 <body>
-    <div class="scanlines"></div>
+    <div class="background">
+        <div class="grid"></div>
+        <div class="scanlines"></div>
+        <div class="glow-layer"></div>
+    </div>
 
     <div class="container">
-        <!-- 首页 - 玩家状态 -->
-        <header id="home" class="hero">
-            <div class="player-status-card nes-container is-dark with-title">
-                <h2 class="title">PLAYER STATUS</h2>
-                <div class="player-info">
-                    <div class="player-avatar">
-                        <img src="https://i.imgur.com/K1LzW8K.png" alt="像素头像" />
+        <!-- 导航 -->
+        <nav class="navbar">
+            <div class="logo glitch" data-text="CR.">CR.</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">主界面</a></li>
+                <li><a href="#profile" class="nav-link">战斗模块</a></li>
+                <li><a href="#experience" class="nav-link">任务档案</a></li>
+                <li><a href="#portfolio" class="nav-link">军火库</a></li>
+                <li><a href="#contact" class="nav-link">通讯链接</a></li>
+            </ul>
+        </nav>
+
+        <!-- 主驾驶舱 HUD -->
+        <header id="home" class="section hero">
+            <div class="hero-grid">
+                <div class="hud-panel player-card">
+                    <div class="panel-header">
+                        <span class="header-light"></span>
+                        <h2 class="panel-title">ID CARD</h2>
                     </div>
-                    <div class="player-stats">
-                        <p>NAME: <span class="highlight">CAO REN</span></p>
-                        <p>CLASS: <span class="highlight">素材创意专家</span></p>
-                        <p>LEVEL: <span class="highlight">8</span></p>
-                        <p>EXP: <span class="highlight">8 年+</span></p>
+                    <div class="panel-content">
+                        <div class="player-avatar">
+                            <img src="https://i.imgur.com/eBq62nF.png" alt="赛博像素头像">
+                            <div class="avatar-scanline"></div>
+                        </div>
+                        <div class="player-info">
+                            <p><strong>ID:</strong> CAO REN</p>
+                            <p><strong>职业:</strong> 素材创意专家</p>
+                            <p><strong>等级:</strong> 8 (8年+)</p>
+                        </div>
                     </div>
                 </div>
-                <div class="press-start-container">
-                    <a href="#profile" class="nes-btn is-primary">PRESS START</a>
+
+                <div class="hero-main">
+                    <h1 class="hero-title glitch" data-text="曹仁">曹仁</h1>
+                    <p class="hero-subtitle">[ 素材创意 / 视频制作 / 项目管理 ]</p>
                 </div>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-box nes-container is-dark">
-                    <p class="stat-title">CTR 提升</p>
-                    <p class="stat-value is-success">0.9% → 2.2%</p>
-                </div>
-                <div class="stat-box nes-container is-dark">
-                    <p class="stat-title">CPI 下降</p>
-                    <p class="stat-value is-success">$10 → $1.6</p>
-                </div>
-                <div class="stat-box nes-container is-dark">
-                    <p class="stat-title">全品类</p>
-                    <p class="stat-value">SLG/MMO/MOBA+</p>
+
+                <div class="hud-panel stats-card">
+                    <div class="panel-header">
+                        <span class="header-light"></span>
+                        <h2 class="panel-title">实时数据</h2>
+                    </div>
+                    <div class="panel-content">
+                        <div class="stat-item">
+                            <label>CTR 优化</label>
+                            <div class="stat-value highlight-green">0.9% ➔ 2.2%</div>
+                            <div class="progress-bar"><div class="progress-fill green" style="width: 75%;"></div></div>
+                        </div>
+                        <div class="stat-item">
+                            <label>CPI 控制</label>
+                            <div class="stat-value highlight-green">$10 ➔ $1.6</div>
+                            <div class="progress-bar"><div class="progress-fill green" style="width: 84%;"></div></div>
+                        </div>
+                        <div class="stat-item">
+                            <label>全品类覆盖</label>
+                            <div class="stat-value">SLG/MMO/MOBA+</div>
+                            <div class="progress-bar"><div class="progress-fill blue" style="width: 100%;"></div></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
 
-        <!-- 导航菜单 -->
-        <nav class="nes-container is-dark is-centered floating-nav">
-            <a href="#profile" class="nes-btn">技能</a>
-            <a href="#experience" class="nes-btn">任务</a>
-            <a href="#portfolio" class="nes-btn">宝藏</a>
-            <a href="#skills" class="nes-btn">技能树</a>
-            <a href="#contact" class="nes-btn">联系</a>
-        </nav>
-
-        <!-- 个人优势 - 被动技能 -->
+        <!-- 核心战斗模块 -->
         <section id="profile" class="section">
-            <h2 class="section-title">ABILITIES</h2>
-            <div class="nes-container is-dark with-title">
-                <h3 class="title">被动技能</h3>
-                <div class="lists">
-                    <ul class="nes-list is-circle">
-                        <li><span class="icon">🎨</span> 全栈制作把控：游戏设计出身，精通 AE/PR/UE/3D Max</li>
-                        <li><span class="icon">📊</span> 数据驱动创意：成熟的"洞察-测试-迭代"闭环</li>
-                        <li><span class="icon">🎯</span> 全品类驾驭：重度/中轻度全覆盖，国内海外双市场经验</li>
-                        <li><span class="icon">⚡</span> 中台基建：从 0 到 1 搭建素材中台，引入 AI 工具</li>
-                        <li><span class="icon">🤝</span> 跨职能协同：深度介入研发，提供前置吸量测试支持</li>
-                    </ul>
+            <h2 class="section-title glitch" data-text="核心战斗模块">核心战斗模块</h2>
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="card-icon">🎨</div>
+                    <h3>全栈制作把控</h3>
+                    <p>游戏设计出身，精通 AE/PR/UE/3D Max，将抽象卖点转化为高转化视觉语言。</p>
+                </div>
+                <div class="module-card">
+                    <div class="card-icon">📊</div>
+                    <h3>数据驱动创意</h3>
+                    <p>成熟的 "洞察-测试-迭代" 闭环，以 CTR/CVR 数据反推创意方向。</p>
+                </div>
+                <div class="module-card">
+                    <div class="card-icon">🎯</div>
+                    <h3>全品类驾驭</h3>
+                    <p>重度/中轻度全覆盖，国内海外双市场经验。</p>
+                </div>
+                <div class="module-card">
+                    <div class="card-icon">⚡</div>
+                    <h3>中台基建</h3>
+                    <p>从 0 到 1 搭建素材中台，运用 AI 工具大幅提升团队人效比。</p>
+                </div>
+                <div class="module-card">
+                    <div class="card-icon">🤝</div>
+                    <h3>跨职能协同</h3>
+                    <p>深度介入研发，提供前置吸量测试支持，验证产品美术风格。</p>
                 </div>
             </div>
         </section>
 
-        <!-- 工作经历 - 任务日志 -->
+        <!-- 任务档案馆 -->
         <section id="experience" class="section">
-            <h2 class="section-title">QUEST LOG</h2>
-            <div class="quest-list">
-                <!-- 元保集团 -->
-                <div class="nes-container is-dark with-title is-centered quest-card" data-modal-target="exp-yuanbao">
-                    <h3 class="title">元保集团 (至今)</h3>
-                    <p>素材创意制作</p>
-                    <span class="nes-badge is-splited">
-                        <span class="is-dark">成就</span>
-                        <span class="is-warning">股份激励</span>
-                    </span>
-                    <button type="button" class="nes-btn is-primary">查看任务详情</button>
+            <h2 class="section-title glitch" data-text="任务档案馆">任务档案馆</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-modal-target="exp-yuanbao">
+                    <div class="timeline-connector"></div>
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>元保集团 <span class="time-range">[2023.10-至今]</span></h3>
+                        <p>职位：素材创意制作</p>
+                        <div class="badge yellow">股份激励</div>
+                    </div>
                 </div>
-                <!-- 点点互动 -->
-                <div class="nes-container is-dark with-title is-centered quest-card" data-modal-target="exp-diandian">
-                    <h3 class="title">点点互动</h3>
-                    <p>创意策划</p>
-                    <button type="button" class="nes-btn">查看任务详情</button>
+                <div class="timeline-item" data-modal-target="exp-diandian">
+                    <div class="timeline-connector"></div>
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>点点互动 <span class="time-range">[2024.08-2024.09]</span></h3>
+                        <p>职位：创意策划</p>
+                    </div>
                 </div>
-                <!-- 竞技世界 -->
-                <div class="nes-container is-dark with-title is-centered quest-card" data-modal-target="exp-jingji">
-                    <h3 class="title">竞技世界</h3>
-                    <p>发行素材项目负责人</p>
-                    <span class="nes-badge is-splited">
-                        <span class="is-dark">成就</span>
-                        <span class="is-warning">最佳新锐奖</span>
-                    </span>
-                    <button type="button" class="nes-btn is-primary">查看任务详情</button>
+                <div class="timeline-item" data-modal-target="exp-jingji">
+                    <div class="timeline-connector"></div>
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>竞技世界 <span class="time-range">[2019.06-2024.03]</span></h3>
+                        <p>职位：发行素材项目负责人</p>
+                        <div class="badge yellow">最佳新锐奖</div>
+                    </div>
                 </div>
-                <!-- 掌游天下 -->
-                <div class="nes-container is-dark with-title is-centered quest-card" data-modal-target="exp-zhangyou">
-                    <h3 class="title">掌游天下</h3>
-                    <p>Playable 广告创意</p>
-                    <button type="button" class="nes-btn">查看任务详情</button>
+                <div class="timeline-item" data-modal-target="exp-zhangyou">
+                    <div class="timeline-connector"></div>
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>掌游天下 <span class="time-range">[2018.07-2019.06]</span></h3>
+                        <p>职位：Playable 广告创意</p>
+                    </div>
                 </div>
+            </div>
+             <div class="education-card hud-panel">
+                 <div class="panel-header"><span class="header-light"></span><h2 class="panel-title">教育背景</h2></div>
+                 <div class="panel-content">
+                     <h3>内蒙古师范大学 <span class="time-range">[2014-2018]</span></h3>
+                     <p>游戏设计专业 | 本科</p>
+                 </div>
             </div>
         </section>
 
-        <!-- 教育经历 -->
-        <section id="education" class="section">
-            <h2 class="section-title">EDUCATION</h2>
-            <div class="nes-container is-dark with-title is-centered">
-                <h3 class="title">内蒙古师范大学 (2014-2018)</h3>
-                <p>游戏设计专业 | 本科</p>
-            </div>
-        </section>
-
-        <!-- 作品集 - 宝藏库 -->
+        <!-- 军火库 -->
         <section id="portfolio" class="section">
-            <h2 class="section-title">TREASURES</h2>
-            <div class="treasure-grid">
-                <a href="https://space.bilibili.com/233305892" target="_blank" class="nes-container is-dark with-title is-centered treasure-card">
-                    <h3 class="title">B 站作品集</h3>
-                    <i class="nes-icon nes-pokeball is-large"></i>
-                    <p>打开宝箱</p>
+            <h2 class="section-title glitch" data-text="军火库">军火库</h2>
+            <div class="arsenal-grid">
+                <a href="https://space.bilibili.com/233305892" target="_blank" class="arsenal-card">
+                    <div class="arsenal-icon">📺</div>
+                    <h3>B 站作品集</h3>
+                    <p>在线视频合集</p>
+                    <div class="card-footer">查看</div>
                 </a>
-                <a href="https://pan.baidu.com/s/1541FC4d7eX_ZvrY1wf73hw?pwd=6666" target="_blank" class="nes-container is-dark with-title is-centered treasure-card">
-                    <h3 class="title">网盘作品集</h3>
-                    <i class="nes-icon nes-chest is-large"></i>
-                    <p>打开宝箱</p>
+                <a href="https://pan.baidu.com/s/1541FC4d7eX_ZvrY1wf73hw?pwd=6666" target="_blank" class="arsenal-card">
+                    <div class="arsenal-icon">📁</div>
+                    <h3>网盘作品集</h3>
+                    <p>高清文件下载</p>
+                    <div class="card-footer">下载</div>
                 </a>
             </div>
-            <div class="video-section nes-container is-dark with-title">
-                <h3 class="title">视频预览</h3>
-                <div class="video-grid">
+            <div class="hud-panel video-panel">
+                <div class="panel-header"><span class="header-light"></span><h2 class="panel-title">视频预览</h2></div>
+                <div class="panel-content video-grid">
                     <div class="video-container">
                         <iframe src="https://player.bilibili.com/player.html?bvid=YOUR_BVID_1&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
                     </div>
@@ -153,145 +194,92 @@
                 </div>
             </div>
         </section>
-
-        <!-- 技能树 -->
-        <section id="skills" class="section">
-            <h2 class="section-title">SKILL TREE</h2>
-            <div class="nes-container is-dark with-title">
-                <h3 class="title">技能点</h3>
-                <div class="skill-grid">
-                    <div class="skill-category">
-                        <h4>🎨 创意策划</h4>
-                        <p>脚本构建</p>
-                        <progress class="nes-progress is-primary" value="95" max="100"></progress>
-                        <p>视频制作</p>
-                        <progress class="nes-progress is-primary" value="90" max="100"></progress>
-                    </div>
-                    <div class="skill-category">
-                        <h4>📊 数据分析</h4>
-                        <p>CTR 优化</p>
-                        <progress class="nes-progress is-success" value="90" max="100"></progress>
-                        <p>CPI 控制</p>
-                        <progress class="nes-progress is-success" value="88" max="100"></progress>
-                    </div>
-                    <div class="skill-category">
-                        <h4>🎮 引擎工具</h4>
-                        <p>AE/PR</p>
-                        <progress class="nes-progress is-warning" value="85" max="100"></progress>
-                        <p>UE/3D Max</p>
-                        <progress class="nes-progress is-warning" value="80" max="100"></progress>
-                    </div>
-                    <div class="skill-category">
-                        <h4>🤖 AI 生产力</h4>
-                        <p>AI 工具</p>
-                        <progress class="nes-progress is-error" value="85" max="100"></progress>
-                        <p>OpenClaw</p>
-                        <progress class="nes-progress is-error" value="82" max="100"></progress>
-                    </div>
-                    <div class="skill-category">
-                        <h4>👨‍💼 团队管理</h4>
-                        <p>团队统筹</p>
-                        <progress class="nes-progress is-pattern" value="88" max="100"></progress>
-                        <p>外包管理</p>
-                        <progress class="nes-progress is-pattern" value="85" max="100"></progress>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 联系方式 - NPC -->
+        
+        <!-- 通讯链接 -->
         <section id="contact" class="section">
-            <h2 class="section-title">CONTACT</h2>
-            <div class="nes-container is-dark with-title">
-                <h3 class="title">NPC: 曹仁</h3>
-                <div class="npc-dialogue">
-                    <i class="nes-octocat animate"></i>
-                    <div class="nes-balloon from-left is-dark">
-                        <p>你好，冒险者！你可以通过以下方式找到我：</p>
-                        <p>📱 <a href="tel:18510980584">18510980584</a></p>
-                        <p>📧 <a href="mailto:932120004@qq.com">932120004@qq.com</a></p>
-                        <p>📍 期望城市：北京</p>
+            <h2 class="section-title glitch" data-text="通讯链接">通讯链接</h2>
+            <div class="contact-grid">
+                <div class="hud-panel contact-card">
+                    <div class="panel-header"><span class="header-light"></span><h2 class="panel-title">INCOMING CALL...</h2></div>
+                    <div class="panel-content">
+                        <div class="contact-avatar">
+                            <img src="https://i.imgur.com/eBq62nF.png" alt="赛博像素头像">
+                        </div>
+                        <div class="contact-info">
+                            <p class="contact-name">曹仁</p>
+                            <p>📱 <a href="tel:18510980584">18510980584</a></p>
+                            <p>📧 <a href="mailto:932120004@qq.com">932120004@qq.com</a></p>
+                            <p>📍 北京</p>
+                        </div>
+                        <div class="contact-actions">
+                            <a href="tel:18510980584" class="btn green">接受通讯</a>
+                            <a href="mailto:932120004@qq.com" class="btn blue">发送消息</a>
+                        </div>
                     </div>
-                </div>
-                <div class="contact-actions">
-                    <a href="tel:18510980584" class="nes-btn is-primary">拨打电话</a>
-                    <a href="mailto:932120004@qq.com" class="nes-btn is-success">发送邮件</a>
                 </div>
             </div>
         </section>
 
         <footer class="footer">
-            <p>© 2026 CAO REN. ALL RIGHTS RESERVED.</p>
-            <p>DESIGN BY GEMINI PIXEL RPG.</p>
+            <p>DESIGN BY [GEMINI] X [CYBER-PIXEL ENGINE]</p>
+            <p>©2026 CAO REN. CONNECTION TERMINATED.</p>
         </footer>
     </div>
 
-    <!-- 弹窗容器 -->
+    <!-- 弹窗 -->
     <div class="modal-backdrop" id="modalBackdrop">
-        <!-- 弹窗模板，内容将由 JS 填充 -->
-        <dialog class="nes-dialog is-dark is-rounded" id="dialog-default">
-            <form method="dialog">
-                <p class="title"></p>
-                <div class="dialog-body"></div>
-                <menu class="dialog-menu">
-                    <button class="nes-btn is-primary">关闭</button>
-                </menu>
-            </form>
-        </dialog>
+        <div class="modal-content hud-panel">
+            <div class="panel-header">
+                <span class="header-light"></span>
+                <h2 class="panel-title modal-title"></h2>
+                <button class="modal-close">×</button>
+            </div>
+            <div class="panel-content modal-body">
+                <!-- 内容由JS填充 -->
+            </div>
+        </div>
     </div>
-
+    
     <!-- 隐藏的弹窗内容 -->
-    <div id="modal-content" style="display: none;">
-        <div id="exp-yuanbao">
+    <div id="modal-hidden-content" style="display: none;">
+        <div data-id="exp-yuanbao">
             <h4>🏆 核心成就</h4>
             <ul>
                 <li>业务线从 0 到 1 搭建，入职半年获公司股份激励</li>
                 <li>负责国内 IAA/IAP 小游戏的核心素材创意与制作闭环</li>
                 <li>从 0 到 1 搭建并完善内部发行素材产出标准、归档流程与质量验收体系</li>
-                <li>深入研发源头，为研发侧的新品立项提供极具市场导向的数据支持</li>
-                <li>积极研究并引入各类前沿美术 AI 工具融入量产工作流</li>
-                <li>搭建包含"爆款框架"与"多维标签"的内部创意库</li>
-                <li>负责核心美术及视频外包团队的审核、项目开拓与日常交付质量管控</li>
             </ul>
         </div>
-        <div id="exp-diandian">
+        <div data-id="exp-diandian">
             <h4>📋 核心职责</h4>
             <ul>
                 <li>负责公司核心业务——国内模拟经营类产品的信息流广告创意深挖</li>
                 <li>Playable 广告的创意策划及高转化互动逻辑设计</li>
-                <li>参与内部多个前沿测试项目的素材玩法测试，快速出样并配合买量投放，验证市场可行性</li>
             </ul>
         </div>
-        <div id="exp-jingji">
+        <div data-id="exp-jingji">
             <h4>🎖️ 核心成就</h4>
             <ul>
                 <li>手游发行部初创成员，首年获"公司最佳新锐奖"</li>
-                <li>负责项目：SLG、MMO、MOBA、三消、卡牌等全品类矩阵（代表作：《JJ 系列》《曙光英雄》《萌宠满屋》《流浪城堡》《King of septsea》等）</li>
+                <li>负责项目：SLG、MMO、MOBA、三消、卡牌等全品类矩阵</li>
             </ul>
-            <h4>【创意与数据迭代】</h4>
-            <ul>
-                <li>基于竞品监控、受众痛点分析及市场流行趋势，精准提炼核心"跑量点"</li>
-                <li>建立包含"爆款框架"与"多维素材标签"的内部创意库</li>
-                <li>深度解析前端大盘数据反馈，对素材进行精细化 A/B 测试与分层迭代，有效延长优质素材的跑量生命周期</li>
-            </ul>
-            <h4>🌟 【核心业绩案例（以 SLG《King of septsea》出海项目为例）】</h4>
+            <h4>🌟 核心业绩案例 (SLG《King of septsea》)</h4>
             <div class="metrics-grid">
-                <div><span>T1 CTR</span><span>0.9% → 2.2%</span></div>
-                <div><span>T1 CVR</span><span>35% → 52%</span></div>
-                <div><span>T1 CPI</span><span>$10 → $1.6</span></div>
-                <div><span>T3 CPI</span><span>$1.6 → $0.3</span></div>
+                <div><span>T1 CTR:</span><span class="highlight-green">0.9% → 2.2%</span></div>
+                <div><span>T1 CVR:</span><span class="highlight-green">35% → 52%</span></div>
+                <div><span>T1 CPI:</span><span class="highlight-green">$10 → $1.6</span></div>
+                <div><span>T3 CPI:</span><span class="highlight-green">$1.6 → $0.3</span></div>
             </div>
         </div>
-        <div id="exp-zhangyou">
+        <div data-id="exp-zhangyou">
             <h4>📋 核心职责</h4>
             <ul>
                 <li>负责多品类休闲及中重度游戏的 Playable (可玩广告) 创意制作</li>
-                <li>深入拆解游戏核心玩法，通过设计诱导点击的沉浸式"互动体验"与"游玩正反馈机制"</li>
-                <li>显著提升用户在试玩环节的停留时长、点击率及最终下载转化率</li>
+                <li>深入拆解游戏核心玩法，设计诱导点击的沉浸式“互动体验”</li>
             </ul>
         </div>
     </div>
-    
-    <script src="script.js?v=pixel-v1"></script>
+
+    <script src="script.js?v=cyber-pixel-v1"></script>
 </body>
 </html>
