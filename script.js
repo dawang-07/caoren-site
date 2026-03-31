@@ -1,64 +1,3 @@
-// ===== 粒子效果 =====
-function createParticles() {
-    const particlesContainer = document.getElementById('particles');
-    const particleCount = 80;
-
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        
-        const size = Math.random() * 4 + 2;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.animationDuration = `${Math.random() * 10 + 15}s`;
-        particle.style.animationDelay = `${Math.random() * 10}s`;
-        particle.style.opacity = Math.random() * 0.5 + 0.3;
-        
-        particlesContainer.appendChild(particle);
-    }
-}
-
-// ===== 技能树动画 =====
-function initSkillTree() {
-    const skillNodes = document.querySelectorAll('.skill-node');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const node = entry.target;
-                const level = node.getAttribute('data-level');
-                const fill = node.querySelector('.node-fill');
-                
-                if (fill && level) {
-                    setTimeout(() => {
-                        fill.style.width = level + '%';
-                    }, 300);
-                }
-                
-                observer.unobserve(node);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    skillNodes.forEach(node => observer.observe(node));
-}
-
-// ===== 导航栏滚动效果 =====
-function initNavbar() {
-    const navbar = document.querySelector('.navbar');
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-            navbar.style.background = 'rgba(10, 10, 18, 0.98)';
-            navbar.style.boxShadow = '0 5px 30px rgba(0, 240, 255, 0.2)';
-        } else {
-            navbar.style.background = 'rgba(10, 10, 18, 0.95)';
-            navbar.style.boxShadow = 'none';
-        }
-    });
-}
-
 // ===== 移动端菜单 =====
 function initMobileMenu() {
     const menuBtn = document.querySelector('.mobile-menu-btn');
@@ -70,7 +9,6 @@ function initMobileMenu() {
             menuBtn.classList.toggle('active');
         });
         
-        // 点击链接后关闭菜单
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
@@ -78,6 +16,21 @@ function initMobileMenu() {
             });
         });
     }
+}
+
+// ===== 导航栏滚动效果 =====
+function initNavbar() {
+    const navbar = document.querySelector('.navbar');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.style.background = 'rgba(15, 23, 42, 0.98)';
+            navbar.style.boxShadow = '0 5px 30px rgba(0, 0, 0, 0.3)';
+        } else {
+            navbar.style.background = 'rgba(15, 23, 42, 0.9)';
+            navbar.style.boxShadow = 'none';
+        }
+    });
 }
 
 // ===== 平滑滚动 =====
@@ -96,6 +49,70 @@ function initSmoothScroll() {
     });
 }
 
+// ===== 技能条动画 =====
+function initSkillBars() {
+    const skillFills = document.querySelectorAll('.skill-fill');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const fill = entry.target;
+                const width = fill.getAttribute('data-width');
+                
+                setTimeout(() => {
+                    fill.style.width = width + '%';
+                }, 300);
+                
+                observer.unobserve(fill);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    skillFills.forEach(fill => observer.observe(fill));
+}
+
+// ===== 弹窗功能 =====
+function initModal() {
+    const backdrop = document.getElementById('modalBackdrop');
+    const cards = document.querySelectorAll('.timeline-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            const modalId = card.getAttribute('data-modal-target');
+            const modal = document.getElementById(modalId);
+            
+            if (modal && backdrop) {
+                backdrop.classList.add('active');
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+    
+    if (backdrop) {
+        backdrop.addEventListener('click', (e) => {
+            if (e.target === backdrop || e.target.classList.contains('modal-close')) {
+                closeModal(backdrop);
+            }
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal(backdrop);
+            }
+        });
+    }
+}
+
+function closeModal(backdrop) {
+    backdrop.classList.remove('active');
+    const activeModal = backdrop.querySelector('.modal.active');
+    if (activeModal) {
+        activeModal.classList.remove('active');
+    }
+    document.body.style.overflow = '';
+}
+
 // ===== 数字滚动动画 =====
 function animateNumbers() {
     const statValues = document.querySelectorAll('.stat-value');
@@ -106,9 +123,7 @@ function animateNumbers() {
                 const target = entry.target;
                 const text = target.textContent;
                 
-                // 处理特殊格式（如百分比、货币符号、箭头）
                 if (text.includes('%') || text.includes('$') || text.includes('→') || text.includes('年') || text.includes('品类')) {
-                    // 不动画，直接显示
                     return;
                 }
                 
@@ -136,6 +151,27 @@ function animateNumbers() {
     statValues.forEach(num => observer.observe(num));
 }
 
+// ===== 卡片悬停效果 =====
+function initCardEffects() {
+    const cards = document.querySelectorAll('.profile-card, .stat-card, .portfolio-card, .video-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            cards.forEach(c => {
+                if (c !== card) {
+                    c.style.opacity = '0.7';
+                }
+            });
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            cards.forEach(c => {
+                c.style.opacity = '1';
+            });
+        });
+    });
+}
+
 // ===== 页面加载动画 =====
 function initPageLoad() {
     document.body.style.opacity = '0';
@@ -148,96 +184,23 @@ function initPageLoad() {
     });
 }
 
-// ===== 视频卡片悬停效果 =====
-function initVideoCards() {
-    const videoCards = document.querySelectorAll('.video-card');
-    
-    videoCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-10px)';
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0)';
-        });
-    });
-}
-
-// ===== 统计卡片高亮效果 =====
-function initStatCards() {
-    const statCards = document.querySelectorAll('.stat-card');
-    
-    statCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            statCards.forEach(c => {
-                if (c !== card) {
-                    c.style.opacity = '0.6';
-                }
-            });
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            statCards.forEach(c => {
-                c.style.opacity = '1';
-            });
-        });
-    });
-}
-
-// ===== 任务日志弹窗 =====
-function initModal() {
-    const modalContainer = document.getElementById('modal-container');
-    const experienceCards = document.querySelectorAll('.experience-card');
-    
-    experienceCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const modalId = card.getAttribute('data-modal-target');
-            const modal = document.getElementById(modalId);
-            
-            if (modal && modalContainer) {
-                modalContainer.classList.add('active');
-                modal.classList.add('active');
-            }
-        });
-    });
-    
-    if (modalContainer) {
-        modalContainer.addEventListener('click', (e) => {
-            if (e.target === modalContainer || e.target.classList.contains('modal-close')) {
-                closeModal(modalContainer);
-            }
-        });
-    }
-}
-
-function closeModal(modalContainer) {
-    modalContainer.classList.remove('active');
-    const activeModal = modalContainer.querySelector('.modal.active');
-    if (activeModal) {
-        activeModal.classList.remove('active');
-    }
-}
-
-// ===== 初始化所有功能 =====
+// ===== 初始化 =====
 function init() {
     try {
-        createParticles();
-        initSkillTree();
-        initNavbar();
         initMobileMenu();
+        initNavbar();
         initSmoothScroll();
-        animateNumbers();
-        initPageLoad();
-        initVideoCards();
-        initStatCards();
+        initSkillBars();
         initModal();
-        console.log('✅ Gemini v2 Modal - 所有功能初始化成功');
+        animateNumbers();
+        initCardEffects();
+        initPageLoad();
+        console.log('✅ GPT v1 - Modern Professional Design Initialized');
     } catch (error) {
-        console.error('❌ 初始化错误:', error);
+        console.error('❌ Initialization error:', error);
     }
 }
 
-// 等待 DOM 加载完成
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
 } else {
@@ -246,20 +209,19 @@ if (document.readyState === 'loading') {
 
 // ===== 控制台彩蛋 =====
 console.log(`
-%c🎮 曹仁 - 游戏买量素材创意专家 %c🚀
-%c欢迎访问我的个人简历网站！%c
+%c🎮 曹仁 - 游戏买量素材创意专家%c
+%cModern Professional Design by GPT-4%c
 
-💼 工作经验：8 年 + 游戏买量素材经验
-🎯 擅长品类：SLG/MMO/MOBA/三消/卡牌
-📊 核心业绩：T1 CTR 0.9% → 2.2%, CPI $10 → $1.6
-🎨 全栈能力：AE/PR/UE/3D Max/AI 工具
+💼 8 年 + 游戏买量经验
+📊 CTR: 0.9% → 2.2% (+144%)
+💰 CPI: $10 → $1.6 (-84%)
+🎯 全品类：SLG/MMO/MOBA/三消/卡牌
 
-有兴趣合作？联系我吧！
 📱 18510980584
 📧 932120004@qq.com
 `, 
-    'font-size: 20px; font-weight: bold; color: #00f0ff;',
-    'font-size: 20px;',
-    'color: #a0a0b0;',
-    'color: #7000ff;'
+    'font-size: 24px; font-weight: 900; background: linear-gradient(135deg, #6366f1, #0ea5e9); -webkit-background-clip: text; -webkit-text-fill-color: transparent;',
+    '',
+    'color: #94a3b8;',
+    ''
 );

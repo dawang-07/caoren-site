@@ -7,57 +7,56 @@
     <meta name="description" content="8 年游戏买量素材经验，擅长 SLG/MMO/MOBA/三消/卡牌全品类，CTR 从 0.9% 提升至 2.2%，CPI 从$10 降至$1.6">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=gemini-v2-modal">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=gpt-v1">
 </head>
 <body>
-    <!-- 粒子背景 -->
-    <div id="particles"></div>
+    <!-- 动态背景 -->
+    <div class="bg-gradient"></div>
+    <div class="bg-grid"></div>
     
     <!-- 导航栏 -->
     <nav class="navbar">
-        <div class="logo">
-            <span class="logo-icon">🎮</span>
-            <span class="logo-text">CAO REN</span>
+        <div class="container nav-container">
+            <div class="logo">
+                <span class="logo-icon">🎮</span>
+                <span class="logo-text">CAO REN</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#profile">优势</a></li>
+                <li><a href="#experience">经历</a></li>
+                <li><a href="#portfolio">作品</a></li>
+                <li><a href="#skills">技能</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-        <ul class="nav-links">
-            <li><a href="#home">首页</a></li>
-            <li><a href="#profile">个人优势</a></li>
-            <li><a href="#experience">工作经历</a></li>
-            <li><a href="#portfolio">作品集</a></li>
-            <li><a href="#skills">技能树</a></li>
-            <li><a href="#contact">联系</a></li>
-        </ul>
-        <button class="mobile-menu-btn" aria-label="菜单">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
     </nav>
 
-    <!-- 首页 - 主角卡牌 -->
+    <!-- 首页 Hero -->
     <section id="home" class="hero">
-        <div class="hero-content">
-            <!-- SSR 角色卡 -->
-            <div class="hero-card rarity-ssr">
-                <div class="card-glow"></div>
-                <div class="card-border"></div>
-                <div class="avatar-frame">
-                    <div class="avatar-placeholder">曹</div>
-                </div>
-                <h1 class="hero-title glitch" data-text="曹仁">曹仁</h1>
-                <p class="hero-subtitle">素材创意策划 / 广告视频制作 / 发行素材项目负责人</p>
-                <div class="hero-info">
-                    <span class="info-tag">📱 18510980584</span>
-                    <span class="info-tag">📧 932120004@qq.com</span>
-                    <span class="info-tag">👨 男 | 30 岁</span>
-                    <span class="info-tag">📍 北京</span>
-                    <span class="info-tag">⏳ 8 年经验</span>
-                </div>
+        <div class="container hero-container">
+            <div class="hero-badge">🚀 开放新机会</div>
+            <h1 class="hero-title">
+                <span class="gradient-text">曹仁</span>
+            </h1>
+            <p class="hero-subtitle">素材创意策划 / 广告视频制作 / 发行素材项目负责人</p>
+            
+            <div class="hero-tags">
+                <span class="tag">📱 18510980584</span>
+                <span class="tag">📧 932120004@qq.com</span>
+                <span class="tag">👨 男 | 30 岁</span>
+                <span class="tag">📍 北京</span>
+                <span class="tag">⏳ 8 年经验</span>
             </div>
             
-            <!-- 战绩面板 -->
-            <div class="stats-panel">
+            <!-- 核心数据 -->
+            <div class="hero-stats">
                 <div class="stat-card">
                     <div class="stat-icon">🎯</div>
                     <div class="stat-value">8 年+</div>
@@ -65,15 +64,15 @@
                 </div>
                 <div class="stat-card highlight">
                     <div class="stat-icon">📈</div>
-                    <div class="stat-value">0.9% → 2.2%</div>
+                    <div class="stat-value gradient-text">0.9% → 2.2%</div>
                     <div class="stat-label">T1 CTR 提升</div>
-                    <div class="stat-sub">+144% 增长</div>
+                    <div class="stat-sub positive">+144% 增长</div>
                 </div>
                 <div class="stat-card highlight">
                     <div class="stat-icon">💰</div>
-                    <div class="stat-value">$10 → $1.6</div>
+                    <div class="stat-value gradient-text">$10 → $1.6</div>
                     <div class="stat-label">T1 CPI 下降</div>
-                    <div class="stat-sub">-84% 成本</div>
+                    <div class="stat-sub positive">-84% 成本</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon">🎮</div>
@@ -82,286 +81,314 @@
                 </div>
             </div>
             
-            <a href="#profile" class="cta-button start-game">
-                <span>🎮 开始浏览</span>
-                <div class="button-glow"></div>
-            </a>
-        </div>
-        <div class="scroll-indicator">
-            <div class="mouse"></div>
-            <span>向下滚动</span>
-        </div>
-    </section>
-
-    <!-- 个人优势 - 被动技能卡 -->
-    <section id="profile" class="profile">
-        <h2 class="section-title">
-            <span class="title-icon">📌</span>
-            个人优势
-        </h2>
-        <div class="profile-grid">
-            <div class="profile-card skill-card rarity-ssr">
-                <div class="card-rarity"></div>
-                <div class="profile-icon">🎨</div>
-                <h3>全栈制作把控</h3>
-                <p>游戏设计专业出身，具备 AE/PR/UE/3D Max 等全流程制作能力，将抽象卖点转化为高转化率视觉语言</p>
-            </div>
-            <div class="profile-card skill-card rarity-ssr">
-                <div class="card-rarity"></div>
-                <div class="profile-icon">📊</div>
-                <h3>数据驱动创意</h3>
-                <p>成熟"市场洞察—脚本构建—AB 测试—调优迭代"闭环，以 CTR/CVR 数据反推创意方向</p>
-            </div>
-            <div class="profile-card skill-card rarity-ssr">
-                <div class="card-rarity"></div>
-                <div class="profile-icon">🎯</div>
-                <h3>全品类驾驭</h3>
-                <p>重度 (SLG/MMO/MOBA)、中轻度 (三消/卡牌/模拟经营/IAA) 全品类覆盖，国内海外双市场经验</p>
-            </div>
-            <div class="profile-card skill-card rarity-sr">
-                <div class="card-rarity"></div>
-                <div class="profile-icon">⚡</div>
-                <h3>中台基建</h3>
-                <p>从 0 到 1 搭建发行素材中台，运用 AI 工具 + OpenClaw 数据分析，大幅提升团队人效比</p>
-            </div>
-            <div class="profile-card skill-card rarity-sr">
-                <div class="card-rarity"></div>
-                <div class="profile-icon">🤝</div>
-                <h3>跨职能协同</h3>
-                <p>深度介入研发上游，提供产品美术风格验证、核心玩法打样的前置吸量测试支持</p>
+            <div class="hero-cta">
+                <a href="#experience" class="btn btn-primary">查看经历</a>
+                <a href="#contact" class="btn btn-secondary">联系我</a>
             </div>
         </div>
     </section>
 
-    <!-- 工作经历 - 任务日志弹窗 -->
-    <section id="experience" class="experience">
-        <h2 class="section-title">
-            <span class="title-icon">💼</span>
-            工作经历
-        </h2>
-        <div class="timeline">
-            <!-- 元保集团 -->
-            <div class="timeline-item">
-                <div class="timeline-marker"></div>
-                <div class="timeline-content experience-card" data-modal-target="exp-yuanbao">
-                    <div class="company-logo">🏢</div>
-                    <h3>元保集团</h3>
-                    <div class="time-range">2023.10 - 至今</div>
-                    <div class="position">素材创意制作</div>
-                    <div class="achievement-badge gold">🏆 入职半年获股份激励</div>
-                    <p class="card-hint">点击查看详情</p>
+    <!-- 个人优势 -->
+    <section id="profile" class="section profile">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-icon">📌</span>
+                个人优势
+            </h2>
+            <div class="profile-grid">
+                <div class="profile-card">
+                    <div class="card-icon">🎨</div>
+                    <h3>全栈制作把控</h3>
+                    <p>游戏设计专业出身，具备 AE/PR/UE/3D Max 等全流程制作能力，将抽象卖点转化为高转化率视觉语言</p>
+                </div>
+                <div class="profile-card">
+                    <div class="card-icon">📊</div>
+                    <h3>数据驱动创意</h3>
+                    <p>成熟"市场洞察—脚本构建—AB 测试—调优迭代"闭环，以 CTR/CVR 数据反推创意方向</p>
+                </div>
+                <div class="profile-card">
+                    <div class="card-icon">🎯</div>
+                    <h3>全品类驾驭</h3>
+                    <p>重度 (SLG/MMO/MOBA)、中轻度 (三消/卡牌/模拟经营/IAA) 全品类覆盖，国内海外双市场经验</p>
+                </div>
+                <div class="profile-card">
+                    <div class="card-icon">⚡</div>
+                    <h3>中台基建</h3>
+                    <p>从 0 到 1 搭建发行素材中台，运用 AI 工具 + OpenClaw 数据分析，大幅提升团队人效比</p>
+                </div>
+                <div class="profile-card">
+                    <div class="card-icon">🤝</div>
+                    <h3>跨职能协同</h3>
+                    <p>深度介入研发上游，提供产品美术风格验证、核心玩法打样的前置吸量测试支持</p>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- 点点互动 -->
-            <div class="timeline-item">
-                <div class="timeline-marker"></div>
-                <div class="timeline-content experience-card" data-modal-target="exp-diandian">
-                    <div class="company-logo">🎲</div>
-                    <h3>点点互动</h3>
-                    <div class="time-range">2024.08 - 2024.09</div>
-                    <div class="position">创意策划</div>
-                    <p class="card-hint">点击查看详情</p>
+    <!-- 工作经历 -->
+    <section id="experience" class="section experience">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-icon">💼</span>
+                工作经历
+            </h2>
+            <div class="timeline">
+                <!-- 元保集团 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-card" data-modal-target="exp-yuanbao">
+                        <div class="card-header">
+                            <div class="company-icon">🏢</div>
+                            <div class="company-info">
+                                <h3>元保集团</h3>
+                                <div class="time-range">2023.10 - 至今</div>
+                                <div class="position">素材创意制作</div>
+                            </div>
+                        </div>
+                        <div class="card-badge gold">🏆 入职半年获股份激励</div>
+                        <div class="card-preview">业务线从 0 到 1 搭建，负责国内 IAA/IAP 小游戏的核心素材创意与制作闭环</div>
+                        <div class="card-hint">点击查看详情 →</div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- 竞技世界 -->
-            <div class="timeline-item">
-                <div class="timeline-marker"></div>
-                <div class="timeline-content experience-card" data-modal-target="exp-jingji">
-                    <div class="company-logo">⚔️</div>
-                    <h3>竞技世界</h3>
-                    <div class="time-range">2019.06 - 2024.03</div>
-                    <div class="position">发行素材项目负责人</div>
-                    <div class="achievement-badge gold">🏆 公司最佳新锐奖</div>
-                    <p class="card-hint">点击查看详情</p>
+                <!-- 点点互动 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-card" data-modal-target="exp-diandian">
+                        <div class="card-header">
+                            <div class="company-icon">🎲</div>
+                            <div class="company-info">
+                                <h3>点点互动</h3>
+                                <div class="time-range">2024.08 - 2024.09</div>
+                                <div class="position">创意策划</div>
+                            </div>
+                        </div>
+                        <div class="card-preview">负责公司核心业务——国内模拟经营类产品的信息流广告创意深挖</div>
+                        <div class="card-hint">点击查看详情 →</div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- 掌游天下 -->
-            <div class="timeline-item">
-                <div class="timeline-marker"></div>
-                <div class="timeline-content experience-card" data-modal-target="exp-zhangyou">
-                    <div class="company-logo">📱</div>
-                    <h3>掌游天下</h3>
-                    <div class="time-range">2018.07 - 2019.06</div>
-                    <div class="position">Playable 广告创意</div>
-                    <p class="card-hint">点击查看详情</p>
+                <!-- 竞技世界 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-card" data-modal-target="exp-jingji">
+                        <div class="card-header">
+                            <div class="company-icon">⚔️</div>
+                            <div class="company-info">
+                                <h3>竞技世界</h3>
+                                <div class="time-range">2019.06 - 2024.03</div>
+                                <div class="position">发行素材项目负责人</div>
+                            </div>
+                        </div>
+                        <div class="card-badge gold">🏆 公司最佳新锐奖</div>
+                        <div class="card-preview">手游发行部初创成员，负责 SLG、MMO、MOBA、三消、卡牌等全品类矩阵</div>
+                        <div class="card-hint">点击查看详情 →</div>
+                    </div>
+                </div>
+
+                <!-- 掌游天下 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-card" data-modal-target="exp-zhangyou">
+                        <div class="card-header">
+                            <div class="company-icon">📱</div>
+                            <div class="company-info">
+                                <h3>掌游天下</h3>
+                                <div class="time-range">2018.07 - 2019.06</div>
+                                <div class="position">Playable 广告创意</div>
+                            </div>
+                        </div>
+                        <div class="card-preview">负责多品类休闲及中重度游戏的 Playable 广告创意制作</div>
+                        <div class="card-hint">点击查看详情 →</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 教育经历 -->
-    <section class="education">
-        <h2 class="section-title">
-            <span class="title-icon">🎓</span>
-            教育经历
-        </h2>
-        <div class="education-card">
-            <div class="edu-icon">🎓</div>
-            <div class="edu-content">
-                <h3>内蒙古师范大学</h3>
-                <div class="edu-major">游戏设计专业 | 本科</div>
-                <div class="edu-time">2014.09 - 2018.06</div>
+    <section class="section education">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-icon">🎓</span>
+                教育经历
+            </h2>
+            <div class="education-card">
+                <div class="edu-icon">🎓</div>
+                <div class="edu-content">
+                    <h3>内蒙古师范大学</h3>
+                    <div class="edu-major">游戏设计专业 | 本科</div>
+                    <div class="edu-time">2014.09 - 2018.06</div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- 作品集 -->
-    <section id="portfolio" class="portfolio">
-        <h2 class="section-title">
-            <span class="title-icon">🎬</span>
-            个人作品
-        </h2>
-        <div class="portfolio-links">
-            <a href="https://space.bilibili.com/233305892" target="_blank" class="portfolio-card">
-                <div class="portfolio-icon">📺</div>
-                <h3>B 站在线作品合集</h3>
-                <p>点击查看我的视频作品集</p>
-                <div class="link-arrow">→</div>
-            </a>
-            <a href="https://pan.baidu.com/s/1541FC4d7eX_ZvrY1wf73hw?pwd=6666" target="_blank" class="portfolio-card">
-                <div class="portfolio-icon">📁</div>
-                <h3>网盘完整作品集</h3>
-                <p>下载高清版本 (提取码：6666)</p>
-                <div class="link-arrow">→</div>
-            </a>
-        </div>
-        
-        <!-- B 站内嵌视频区 -->
-        <div class="video-section">
-            <h3 class="video-title">🎮 视频预览</h3>
-            <div class="video-grid">
-                <!-- 视频卡片 1 -->
-                <div class="video-card">
-                    <div class="video-container">
-                        <iframe src="https://player.bilibili.com/player.html?bvid=YOUR_BVID_1&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
-                    </div>
-                    <a href="https://www.bilibili.com/video/YOUR_BVID_1" target="_blank" class="bilibili-link">
-                        <span>📺 前往 B 站看完整版</span>
-                    </a>
-                </div>
-                <!-- 视频卡片 2 -->
-                <div class="video-card">
-                    <div class="video-container">
-                        <iframe src="https://player.bilibili.com/player.html?bvid=YOUR_BVID_2&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
-                    </div>
-                    <a href="https://www.bilibili.com/video/YOUR_BVID_2" target="_blank" class="bilibili-link">
-                        <span>📺 前往 B 站看完整版</span>
-                    </a>
-                </div>
-                <!-- 视频卡片 3 -->
-                <div class="video-card">
-                    <div class="video-container">
-                        <iframe src="https://player.bilibili.com/player.html?bvid=YOUR_BVID_3&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
-                    </div>
-                    <a href="https://www.bilibili.com/video/YOUR_BVID_3" target="_blank" class="bilibili-link">
-                        <span>📺 前往 B 站看完整版</span>
-                    </a>
-                </div>
+    <section id="portfolio" class="section portfolio">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-icon">🎬</span>
+                个人作品
+            </h2>
+            <div class="portfolio-links">
+                <a href="https://space.bilibili.com/233305892" target="_blank" class="portfolio-card">
+                    <div class="portfolio-icon">📺</div>
+                    <h3>B 站在线作品合集</h3>
+                    <p>点击查看我的视频作品集</p>
+                    <div class="link-arrow">→</div>
+                </a>
+                <a href="https://pan.baidu.com/s/1541FC4d7eX_ZvrY1wf73hw?pwd=6666" target="_blank" class="portfolio-card">
+                    <div class="portfolio-icon">📁</div>
+                    <h3>网盘完整作品集</h3>
+                    <p>下载高清版本 (提取码：6666)</p>
+                    <div class="link-arrow">→</div>
+                </a>
             </div>
-            <p class="video-hint">💡 提示：将 YOUR_BVID_x 替换为你的 B 站视频 BV 号</p>
+            
+            <!-- B 站内嵌视频区 -->
+            <div class="video-section">
+                <h3 class="section-subtitle">🎮 视频预览</h3>
+                <div class="video-grid">
+                    <div class="video-card">
+                        <div class="video-container">
+                            <iframe src="https://player.bilibili.com/player.html?bvid=YOUR_BVID_1&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                        </div>
+                        <a href="https://www.bilibili.com/video/YOUR_BVID_1" target="_blank" class="video-link">
+                            <span>📺 前往 B 站看完整版</span>
+                        </a>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-container">
+                            <iframe src="https://player.bilibili.com/player.html?bvid=YOUR_BVID_2&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                        </div>
+                        <a href="https://www.bilibili.com/video/YOUR_BVID_2" target="_blank" class="video-link">
+                            <span>📺 前往 B 站看完整版</span>
+                        </a>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-container">
+                            <iframe src="https://player.bilibili.com/player.html?bvid=YOUR_BVID_3&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                        </div>
+                        <a href="https://www.bilibili.com/video/YOUR_BVID_3" target="_blank" class="video-link">
+                            <span>📺 前往 B 站看完整版</span>
+                        </a>
+                    </div>
+                </div>
+                <p class="video-hint">💡 提示：将 YOUR_BVID_x 替换为你的 B 站视频 BV 号</p>
+            </div>
         </div>
     </section>
 
     <!-- 技能树 -->
-    <section id="skills" class="skills">
-        <h2 class="section-title">
-            <span class="title-icon">⚡</span>
-            技能树
-        </h2>
-        <div class="skill-tree">
-            <div class="skill-branch">
-                <h3>🎨 创意策划</h3>
-                <div class="skill-node" data-level="95">
-                    <div class="node-icon">✍️</div>
-                    <div class="node-name">脚本构建</div>
-                    <div class="node-bar"><div class="node-fill"></div></div>
-                    <div class="node-level">LV.95</div>
+    <section id="skills" class="section skills">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-icon">⚡</span>
+                技能树
+            </h2>
+            <div class="skill-grid">
+                <div class="skill-category">
+                    <h3>🎨 创意策划</h3>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">脚本构建</span>
+                            <span class="skill-level">LV.95</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">视频制作</span>
+                            <span class="skill-level">LV.90</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+                    </div>
                 </div>
-                <div class="skill-node" data-level="90">
-                    <div class="node-icon">🎬</div>
-                    <div class="node-name">视频制作</div>
-                    <div class="node-bar"><div class="node-fill"></div></div>
-                    <div class="node-level">LV.90</div>
+                <div class="skill-category">
+                    <h3>📊 数据分析</h3>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">CTR 优化</span>
+                            <span class="skill-level">LV.90</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">CPI 控制</span>
+                            <span class="skill-level">LV.88</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-branch">
-                <h3>📊 数据分析</h3>
-                <div class="skill-node" data-level="90">
-                    <div class="node-icon">📈</div>
-                    <div class="node-name">CTR 优化</div>
-                    <div class="node-bar"><div class="node-fill"></div></div>
-                    <div class="node-level">LV.90</div>
+                <div class="skill-category">
+                    <h3>🎮 引擎工具</h3>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">AE/PR</span>
+                            <span class="skill-level">LV.85</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">UE/3D Max</span>
+                            <span class="skill-level">LV.80</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+                    </div>
                 </div>
-                <div class="skill-node" data-level="88">
-                    <div class="node-icon">💰</div>
-                    <div class="node-name">CPI 控制</div>
-                    <div class="node-bar"><div class="node-fill"></div></div>
-                    <div class="node-level">LV.88</div>
+                <div class="skill-category">
+                    <h3>🤖 AI 生产力</h3>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">AI 工具</span>
+                            <span class="skill-level">LV.85</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">OpenClaw</span>
+                            <span class="skill-level">LV.82</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-branch">
-                <h3>🎮 引擎工具</h3>
-                <div class="skill-node" data-level="85">
-                    <div class="node-icon">🎥</div>
-                    <div class="node-name">AE/PR</div>
-                    <div class="node-bar"><div class="node-fill"></div></div>
-                    <div class="node-level">LV.85</div>
-                </div>
-                <div class="skill-node" data-level="80">
-                    <div class="node-icon">🎮</div>
-                    <div class="node-name">UE/3D Max</div>
-                    <div class="node-bar"><div class="node-fill"></div></div>
-                    <div class="node-level">LV.80</div>
-                </div>
-            </div>
-            <div class="skill-branch">
-                <h3>🤖 AI 生产力</h3>
-                <div class="skill-node" data-level="85">
-                    <div class="node-icon">🤖</div>
-                    <div class="node-name">AI 工具</div>
-                    <div class="node-bar"><div class="node-fill"></div></div>
-                    <div class="node-level">LV.85</div>
-                </div>
-                <div class="skill-node" data-level="82">
-                    <div class="node-icon">📊</div>
-                    <div class="node-name">OpenClaw</div>
-                    <div class="node-bar"><div class="node-fill"></div></div>
-                    <div class="node-level">LV.82</div>
-                </div>
-            </div>
-            <div class="skill-branch">
-                <h3>👨‍💼 团队管理</h3>
-                <div class="skill-node" data-level="88">
-                    <div class="node-icon">👥</div>
-                    <div class="node-name">团队统筹</div>
-                    <div class="node-bar"><div class="node-fill"></div></div>
-                    <div class="node-level">LV.88</div>
-                </div>
-                <div class="skill-node" data-level="85">
-                    <div class="node-icon">📋</div>
-                    <div class="node-name">外包管理</div>
-                    <div class="node-bar"><div class="node-fill"></div></div>
-                    <div class="node-level">LV.85</div>
+                <div class="skill-category">
+                    <h3>👨‍💼 团队管理</h3>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">团队统筹</span>
+                            <span class="skill-level">LV.88</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">外包管理</span>
+                            <span class="skill-level">LV.85</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 联系方式 - NPC 对话框 -->
-    <section id="contact" class="contact">
-        <h2 class="section-title">
-            <span class="title-icon">📬</span>
-            联系我
-        </h2>
-        <div class="npc-dialogue">
-            <div class="npc-avatar">🧑‍💼</div>
-            <div class="dialogue-box">
-                <div class="npc-name">曹仁</div>
-                <div class="dialogue-text">
-                    <p>你可以通过以下方式联系我：</p>
+    <!-- 联系方式 -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-icon">📬</span>
+                联系我
+            </h2>
+            <div class="contact-card">
+                <div class="contact-avatar">🧑‍💼</div>
+                <div class="contact-content">
+                    <h3>曹仁</h3>
+                    <p class="contact-intro">期待与您共创游戏买量新高度</p>
                     <div class="contact-list">
                         <div class="contact-item">
                             <span class="contact-icon">📱</span>
@@ -380,34 +407,30 @@
                             <span>期望城市：北京</span>
                         </div>
                     </div>
+                    <div class="contact-actions">
+                        <a href="tel:18510980584" class="btn btn-primary">📞 拨打电话</a>
+                        <a href="mailto:932120004@qq.com" class="btn btn-secondary">📧 发送邮件</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="contact-actions">
-            <a href="tel:18510980584" class="cta-button">
-                <span>📞 拨打电话</span>
-                <div class="button-glow"></div>
-            </a>
-            <a href="mailto:932120004@qq.com" class="cta-button secondary">
-                <span>📧 发送邮件</span>
-                <div class="button-glow"></div>
-            </a>
         </div>
     </section>
 
     <footer class="footer">
-        <p>© 2026 曹仁 | 游戏买量素材创意专家</p>
-        <p class="footer-note">🎮 感谢访问我的个人简历网站</p>
+        <div class="container">
+            <p>© 2026 曹仁 | 游戏买量素材创意专家</p>
+            <p class="footer-note">🎮 感谢访问我的个人简历网站</p>
+        </div>
     </footer>
     
-    <!-- 任务日志弹窗 -->
-    <div id="modal-container">
+    <!-- 弹窗容器 -->
+    <div class="modal-backdrop" id="modalBackdrop">
         <!-- 元保集团 -->
         <div class="modal" id="exp-yuanbao">
             <div class="modal-content">
                 <button class="modal-close">&times;</button>
                 <div class="modal-header">
-                    <div class="company-logo">🏢</div>
+                    <div class="company-icon">🏢</div>
                     <div>
                         <h3>元保集团</h3>
                         <div class="time-range">2023.10 - 至今</div>
@@ -422,7 +445,7 @@
                         <li>从 0 到 1 搭建并完善内部发行素材产出标准、归档流程与质量验收体系</li>
                         <li>深入研发源头，为研发侧的新品立项提供极具市场导向的数据支持</li>
                         <li>积极研究并引入各类前沿美术 AI 工具融入量产工作流</li>
-                        <li>搭建包含“爆款框架”与“多维标签”的内部创意库</li>
+                        <li>搭建包含"爆款框架"与"多维标签"的内部创意库</li>
                         <li>负责核心美术及视频外包团队的审核、项目开拓与日常交付质量管控</li>
                     </ul>
                 </div>
@@ -433,7 +456,7 @@
             <div class="modal-content">
                 <button class="modal-close">&times;</button>
                 <div class="modal-header">
-                    <div class="company-logo">🎲</div>
+                    <div class="company-icon">🎲</div>
                     <div>
                         <h3>点点互动</h3>
                         <div class="time-range">2024.08 - 2024.09</div>
@@ -455,7 +478,7 @@
             <div class="modal-content">
                 <button class="modal-close">&times;</button>
                 <div class="modal-header">
-                    <div class="company-logo">⚔️</div>
+                    <div class="company-icon">⚔️</div>
                     <div>
                         <h3>竞技世界</h3>
                         <div class="time-range">2019.06 - 2024.03</div>
@@ -465,21 +488,21 @@
                 <div class="modal-body">
                     <h4>🎖️ 核心成就</h4>
                     <ul>
-                        <li>手游发行部初创成员，首年获“公司最佳新锐奖”</li>
-                        <li>负责项目：SLG、MMO、MOBA、三消、卡牌等全品类矩阵（代表作：《JJ系列》《曙光英雄》《萌宠满屋》《流浪城堡》《King of septsea》等）</li>
+                        <li>手游发行部初创成员，首年获"公司最佳新锐奖"</li>
+                        <li>负责项目：SLG、MMO、MOBA、三消、卡牌等全品类矩阵（代表作：《JJ 系列》《曙光英雄》《萌宠满屋》《流浪城堡》《King of septsea》等）</li>
                     </ul>
                     <h4>【创意与数据迭代】</h4>
                     <ul>
-                        <li>基于竞品监控、受众痛点分析及市场流行趋势，精准提炼核心“跑量点”</li>
-                        <li>建立包含“爆款框架”与“多维素材标签”的内部创意库</li>
+                        <li>基于竞品监控、受众痛点分析及市场流行趋势，精准提炼核心"跑量点"</li>
+                        <li>建立包含"爆款框架"与"多维素材标签"的内部创意库</li>
                         <li>深度解析前端大盘数据反馈，对素材进行精细化 A/B 测试与分层迭代，有效延长优质素材的跑量生命周期</li>
                     </ul>
                     <h4>【内部团队管理与机制建设】</h4>
                     <ul>
                         <li>梳理并规范内部素材的流转标准及 SOP</li>
                         <li>科学评估需求优先级并统筹调配人效，保障高额产能需求下的零延期交付</li>
-                        <li>打通“投放端—策划端—制作端”的信息壁垒，大幅降低无效返工率</li>
-                        <li>建立常态化的“数据回传-创意复盘”机制，持续拔高团队的商业审美与创意网感</li>
+                        <li>打通"投放端—策划端—制作端"的信息壁垒，大幅降低无效返工率</li>
+                        <li>建立常态化的"数据回传 - 创意复盘"机制，持续拔高团队的商业审美与创意网感</li>
                     </ul>
                     <h4>🌟 【核心业绩案例（以 SLG《King of septsea》出海项目为例）】</h4>
                     <p>通过多次不同美术风格和游戏玩法变种的 A/B 测试素材，精准锁定了最匹配目标用户的画风与买量噱头。</p>
@@ -487,22 +510,22 @@
                         <div class="metric-item">
                             <span class="metric-label">T1 CTR</span>
                             <span class="metric-value up">0.9% → 2.2%</span>
-                            <span class="metric-sub">↑144%</span>
+                            <span class="metric-sub positive">↑144%</span>
                         </div>
                         <div class="metric-item">
                             <span class="metric-label">T1 CVR</span>
                             <span class="metric-value up">35% → 52%</span>
-                            <span class="metric-sub">↑49%</span>
+                            <span class="metric-sub positive">↑49%</span>
                         </div>
                         <div class="metric-item">
                             <span class="metric-label">T1 CPI</span>
                             <span class="metric-value down">$10 → $1.6</span>
-                            <span class="metric-sub">↓84%</span>
+                            <span class="metric-sub positive">↓84%</span>
                         </div>
                         <div class="metric-item">
                             <span class="metric-label">T3 CPI</span>
                             <span class="metric-value down">$1.6 → $0.3</span>
-                            <span class="metric-sub">↓81%</span>
+                            <span class="metric-sub positive">↓81%</span>
                         </div>
                     </div>
                 </div>
@@ -513,7 +536,7 @@
             <div class="modal-content">
                 <button class="modal-close">&times;</button>
                 <div class="modal-header">
-                    <div class="company-logo">📱</div>
+                    <div class="company-icon">📱</div>
                     <div>
                         <h3>掌游天下</h3>
                         <div class="time-range">2018.07 - 2019.06</div>
@@ -524,7 +547,7 @@
                     <h4>📋 核心职责</h4>
                     <ul>
                         <li>负责多品类休闲及中重度游戏的 Playable (可玩广告) 创意制作</li>
-                        <li>深入拆解游戏核心玩法，通过设计诱导点击的沉浸式“互动体验”与“游玩正反馈机制”</li>
+                        <li>深入拆解游戏核心玩法，通过设计诱导点击的沉浸式"互动体验"与"游玩正反馈机制"</li>
                         <li>显著提升用户在试玩环节的停留时长、点击率及最终下载转化率</li>
                     </ul>
                 </div>
@@ -532,6 +555,6 @@
         </div>
     </div>
 
-    <script src="script.js?v=gemini-v2-modal"></script>
+    <script src="script.js?v=gpt-v1"></script>
 </body>
 </html>
