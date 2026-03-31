@@ -70,6 +70,27 @@ function initNavbar() {
     });
 }
 
+// ===== 移动端菜单 =====
+function initMobileMenu() {
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (menuBtn && navLinks) {
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuBtn.classList.toggle('active');
+        });
+        
+        // 点击链接后关闭菜单
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuBtn.classList.remove('active');
+            });
+        });
+    }
+}
+
 // ===== 平滑滚动 =====
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -153,40 +174,25 @@ function initVideoCards() {
     });
 }
 
-// ===== 移动端菜单切换 =====
-function initMobileMenu() {
-    const navbar = document.querySelector('.navbar');
+// ===== 统计卡片高亮效果 =====
+function initStatCards() {
+    const statCards = document.querySelectorAll('.stat-card');
     
-    // 检测是否需要移动端菜单
-    if (window.innerWidth <= 768) {
-        const menuToggle = document.createElement('button');
-        menuToggle.innerHTML = '☰';
-        menuToggle.style.cssText = `
-            background: var(--gradient-1);
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-        `;
-        
-        navbar.appendChild(menuToggle);
-        
-        menuToggle.addEventListener('click', () => {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            if (navLinks.style.display === 'flex') {
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '100%';
-                navLinks.style.left = '0';
-                navLinks.style.right = '0';
-                navLinks.style.background = 'rgba(10, 10, 18, 0.98)';
-                navLinks.style.padding = '1rem';
-            }
+    statCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            statCards.forEach(c => {
+                if (c !== card) {
+                    c.style.opacity = '0.6';
+                }
+            });
         });
-    }
+        
+        card.addEventListener('mouseleave', () => {
+            statCards.forEach(c => {
+                c.style.opacity = '1';
+            });
+        });
+    });
 }
 
 // ===== 初始化所有功能 =====
@@ -196,12 +202,13 @@ function init() {
         initCardFlip();
         initSkillTree();
         initNavbar();
+        initMobileMenu();
         initSmoothScroll();
         animateNumbers();
         initPageLoad();
         initVideoCards();
-        initMobileMenu();
-        console.log('✅ 所有功能初始化成功');
+        initStatCards();
+        console.log('✅ Gemini 版本 - 所有功能初始化成功');
     } catch (error) {
         console.error('❌ 初始化错误:', error);
     }
