@@ -54,7 +54,7 @@ function init() {
     try {
         initAccordion();
         initScrollAnimations();
-        console.log('[SYSTEM] Cyber-Streamlined v2 Initialized.');
+        console.log('[SYSTEM] Cyber-Streamlined Final Version Initialized.');
     } catch (error) {
         console.error('[SYSTEM] Initialization Failure:', error);
     }
