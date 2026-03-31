@@ -1,350 +1,245 @@
-// ========== 像素风简历网站交互脚本 ==========
+// ===== 粒子效果 =====
+function createParticles() {
+    const particlesContainer = document.getElementById('particles');
+    const particleCount = 100;
 
-// 等待 DOM 加载完成
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // ===== 像素光标跟随 =====
-    const cursor = document.querySelector('.cursor');
-    
-    if (cursor && window.innerWidth > 768) {
-        document.addEventListener('mousemove', function(e) {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-        
-        // 点击效果
-        document.addEventListener('click', function(e) {
-            createClickEffect(e.clientX, e.clientY);
-        });
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+            position: absolute;
+            width: ${Math.random() * 4 + 1}px;
+            height: ${Math.random() * 4 + 1}px;
+            background: rgba(0, 240, 255, ${Math.random() * 0.5 + 0.3});
+            border-radius: 50%;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation: float ${Math.random() * 10 + 10}s linear infinite;
+            box-shadow: 0 0 ${Math.random() * 10 + 5}px rgba(0, 240, 255, 0.8);
+        `;
+        particlesContainer.appendChild(particle);
     }
-    
-    // ===== 点击像素粒子效果 =====
-    function createClickEffect(x, y) {
-        const colors = ['#00e436', '#59a9ff', '#ff6b9d', '#ffd700'];
-        
-        for (let i = 0; i < 8; i++) {
-            const particle = document.createElement('div');
-            particle.style.cssText = `
-                position: fixed;
-                width: 8px;
-                height: 8px;
-                background: ${colors[Math.floor(Math.random() * colors.length)]};
-                left: ${x}px;
-                top: ${y}px;
-                pointer-events: none;
-                z-index: 9999;
-                image-rendering: pixelated;
-            `;
-            
-            document.body.appendChild(particle);
-            
-            const angle = (i / 8) * Math.PI * 2;
-            const velocity = 5;
-            const vx = Math.cos(angle) * velocity;
-            const vy = Math.sin(angle) * velocity;
-            
-            animateParticle(particle, vx, vy);
+}
+
+// 添加浮动动画
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes float {
+        0% {
+            transform: translateY(0) translateX(0);
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-100vh) translateX(${Math.random() * 100 - 50}px);
+            opacity: 0;
         }
     }
+`;
+document.head.appendChild(style);
+
+// ===== 卡片翻转 =====
+function initCardFlip() {
+    const cards = document.querySelectorAll('.card-3d');
     
-    function animateParticle(particle, vx, vy) {
-        let x = parseFloat(particle.style.left);
-        let y = parseFloat(particle.style.top);
-        let opacity = 1;
-        
-        function update() {
-            x += vx;
-            y += vy + 0.5; // 重力
-            opacity -= 0.02;
-            
-            particle.style.left = x + 'px';
-            particle.style.top = y + 'px';
-            particle.style.opacity = opacity;
-            
-            if (opacity > 0) {
-                requestAnimationFrame(update);
-            } else {
-                particle.remove();
-            }
-        }
-        
-        update();
-    }
-    
-    // ===== 加载动画 =====
-    const loading = document.getElementById('loading');
-    const mainContent = document.getElementById('main-content');
-    
-    if (loading && mainContent) {
-        setTimeout(function() {
-            loading.style.opacity = '0';
-            setTimeout(function() {
-                loading.style.display = 'none';
-                mainContent.style.display = 'block';
-                animateTimelineItems();
-            }, 500);
-        }, 2000);
-    }
-    
-    // ===== 时间线项目动画 =====
-    function animateTimelineItems() {
-        const items = document.querySelectorAll('.timeline-item');
-        
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    const content = entry.target.querySelector('.timeline-content');
-                    if (content) {
-                        content.style.animationPlayState = 'running';
-                    }
-                }
-            });
-        }, { threshold: 0.3 });
-        
-        items.forEach(function(item) {
-            observer.observe(item);
-        });
-    }
-    
-    // ===== 创建闪烁星星背景 =====
-    createStars();
-    
-    function createStars() {
-        const starsContainer = document.createElement('div');
-        starsContainer.className = 'stars';
-        
-        for (let i = 0; i < 50; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.animationDelay = Math.random() * 2 + 's';
-            starsContainer.appendChild(star);
-        }
-        
-        document.body.insertBefore(starsContainer, document.body.firstChild);
-    }
-    
-    // ===== 标题打字机效果 =====
-    const title = document.querySelector('.pixel-title');
-    if (title) {
-        const text = title.textContent;
-        title.textContent = '';
-        title.style.display = 'inline-block';
-        
-        let i = 0;
-        function typeWriter() {
-            if (i < text.length) {
-                title.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 150);
-            }
-        }
-        
-        setTimeout(typeWriter, 2500);
-    }
-    
-    // ===== 技能条动画（如果有） =====
-    function animateSkillBars() {
-        const bars = document.querySelectorAll('.skill-progress');
-        
-        bars.forEach(function(bar) {
-            const width = bar.style.width;
-            bar.style.width = '0';
-            
-            setTimeout(function() {
-                bar.style.width = width;
-            }, 300);
-        });
-    }
-    
-    // ===== 滚动动画 =====
-    let lastScrollY = window.scrollY;
-    
-    window.addEventListener('scroll', function() {
-        const currentScrollY = window.scrollY;
-        
-        // 视差效果
-        const parallaxElements = document.querySelectorAll('.pixel-border');
-        parallaxElements.forEach(function(el) {
-            const speed = 0.1;
-            const yPos = (currentScrollY - el.offsetTop) * speed;
-            if (yPos < 50 && yPos > -50) {
-                el.style.transform = 'translateY(' + yPos + 'px)';
-            }
-        });
-        
-        lastScrollY = currentScrollY;
-    });
-    
-    // ===== 按钮悬停音效（可选） =====
-    const buttons = document.querySelectorAll('.pixel-btn, .pixel-tag');
-    
-    buttons.forEach(function(btn) {
-        btn.addEventListener('mouseenter', function() {
-            // 可以添加音效
-            console.log('Hover effect triggered');
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            card.classList.toggle('flipped');
         });
     });
-    
-    // ===== 控制台彩蛋 =====
-    console.log('%c🎮 欢迎来到曹仁的像素风简历网站！', 'color: #00e436; font-size: 16px; font-weight: bold; font-family: "Press Start 2P", cursive;');
-    console.log('%c👾 Made with Pixel Love', 'color: #59a9ff; font-size: 12px;');
-    console.log('%c📧 联系：932120004@qq.com', 'color: #ff6b9d; font-size: 10px;');
-    
-    // ===== 键盘快捷键 =====
-    document.addEventListener('keydown', function(e) {
-        // 按 C 显示/隐藏光标
-        if (e.key === 'c' || e.key === 'C') {
-            if (cursor) {
-                cursor.style.display = cursor.style.display === 'none' ? 'block' : 'none';
+}
+
+// ===== 视频弹窗 =====
+function initVideoModal() {
+    const modal = document.getElementById('video-modal');
+    const video = document.getElementById('modal-video');
+    const closeBtn = document.querySelector('.modal-close');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    // 示例视频 URL（实际使用时替换为你的视频）
+    const videoSources = {
+        video1: 'https://www.w3schools.com/html/mov_bbb.mp4',
+        video2: 'https://www.w3schools.com/html/movie.mp4',
+        video3: 'https://www.w3schools.com/html/mov_bbb.mp4',
+        video4: 'https://www.w3schools.com/html/movie.mp4'
+    };
+
+    projectCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const videoId = card.getAttribute('data-video');
+            const videoSrc = videoSources[videoId];
+            
+            if (videoSrc) {
+                video.src = videoSrc;
+                modal.classList.add('active');
+                video.play();
             }
-        }
-        
-        // 按 S 切换星星背景
-        if (e.key === 's' || e.key === 'S') {
-            const stars = document.querySelector('.stars');
-            if (stars) {
-                stars.style.display = stars.style.display === 'none' ? 'block' : 'none';
-            }
-        }
-        
-        // 按 H 返回首页顶部
-        if (e.key === 'h' || e.key === 'H') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+
+    closeBtn.addEventListener('click', () => {
+        modal.classList.remove('active');
+        video.pause();
+        video.src = '';
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            video.pause();
+            video.src = '';
         }
     });
+
+    // ESC 键关闭
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            modal.classList.remove('active');
+            video.pause();
+            video.src = '';
+        }
+    });
+}
+
+// ===== 技能条动画 =====
+function initSkillBars() {
+    const skillBars = document.querySelectorAll('.skill-fill');
     
-    // ===== 平滑滚动到锚点 =====
-    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const percent = entry.target.getAttribute('data-percent');
+                entry.target.style.width = percent + '%';
+            }
+        });
+    }, { threshold: 0.5 });
+
+    skillBars.forEach(bar => observer.observe(bar));
+}
+
+// ===== 导航栏滚动效果 =====
+function initNavbar() {
+    const navbar = document.querySelector('.navbar');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            navbar.style.background = 'rgba(10, 10, 18, 0.98)';
+            navbar.style.boxShadow = '0 5px 30px rgba(0, 240, 255, 0.2)';
+        } else {
+            navbar.style.background = 'rgba(10, 10, 18, 0.9)';
+            navbar.style.boxShadow = 'none';
+        }
+    });
+}
+
+// ===== 平滑滚动 =====
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
                 });
             }
         });
     });
+}
+
+// ===== 数字滚动动画 =====
+function animateNumbers() {
+    const statNumbers = document.querySelectorAll('.stat-number');
     
-    // ===== 性能优化：节流滚动事件 =====
-    function throttle(func, delay) {
-        let timeoutId;
-        let lastExecTime = 0;
-        
-        return function(...args) {
-            const currentTime = Date.now();
-            
-            if (currentTime - lastExecTime < delay) {
-                clearTimeout(timeoutId);
-                timeoutId = setTimeout(() => {
-                    lastExecTime = currentTime;
-                    func.apply(this, args);
-                }, delay);
-            } else {
-                lastExecTime = currentTime;
-                func.apply(this, args);
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = entry.target;
+                const text = target.textContent;
+                const number = parseInt(text.replace(/\D/g, ''));
+                const suffix = text.replace(/[0-9]/g, '');
+                
+                let current = 0;
+                const increment = number / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= number) {
+                        current = number;
+                        clearInterval(timer);
+                    }
+                    target.textContent = Math.floor(current) + suffix;
+                }, 30);
+                
+                observer.unobserve(target);
             }
-        };
-    }
-    
-    // ===== 移动端优化 =====
-    if (window.innerWidth <= 768) {
-        // 移动设备上禁用自定义光标
-        if (cursor) {
-            cursor.style.display = 'none';
-        }
-        
-        // 简化动画
-        document.body.style.setProperty('--animation-speed', '0.5');
-    }
-    
-    // ===== 页面可见性变化时暂停动画 =====
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            document.body.classList.add('paused');
-        } else {
-            document.body.classList.remove('paused');
-        }
-    });
-    
-    // ===== 添加加载完成类 =====
-    setTimeout(function() {
-        document.body.classList.add('loaded');
-    }, 100);
-    
-});
+        });
+    }, { threshold: 0.5 });
 
-// ===== 全局工具函数 =====
-
-// 随机数生成
-function random(min, max) {
-    return Math.random() * (max - min) + min;
+    statNumbers.forEach(num => observer.observe(num));
 }
 
-// 像素化效果
-function pixelate(element, size) {
-    element.style.imageRendering = 'pixelated';
-    element.style.width = size + 'px';
-    element.style.height = size + 'px';
-}
-
-// 颜色渐变动画
-function animateColor(element, colors, duration) {
-    let index = 0;
+// ===== 鼠标跟随效果 =====
+function initMouseFollow() {
+    const cards = document.querySelectorAll('.project-card, .stat-card');
     
-    setInterval(function() {
-        element.style.color = colors[index];
-        element.style.borderColor = colors[index];
-        index = (index + 1) % colors.length;
-    }, duration);
-}
-
-// ===== Service Worker 注册（可选，用于离线访问） =====
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        // 可以注册 service worker 用于离线缓存
-        // navigator.serviceWorker.register('/sw.js');
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
     });
 }
 
-// ===== 性能监控 =====
-window.addEventListener('load', function() {
-    const timing = performance.timing;
-    const loadTime = timing.loadEventEnd - timing.navigationStart;
-    console.log(`📊 页面加载时间：${loadTime}ms`);
-});
-
-// ===== 错误处理 =====
-window.addEventListener('error', function(e) {
-    console.error('❌ 页面错误:', e.message);
-    // 可以在这里添加错误报告逻辑
-});
-
-// ===== 防抖函数 =====
-function debounce(func, wait) {
-    let timeout;
-    return function(...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), wait);
-    };
+// ===== 页面加载动画 =====
+function initPageLoad() {
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.5s ease';
+    
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.body.style.opacity = '1';
+        }, 100);
+    });
 }
 
-// ===== 窗口大小变化时重新计算 =====
-window.addEventListener('resize', debounce(function() {
-    if (window.innerWidth <= 768) {
-        const cursor = document.querySelector('.cursor');
-        if (cursor) cursor.style.display = 'none';
-    } else {
-        const cursor = document.querySelector('.cursor');
-        if (cursor) cursor.style.display = 'block';
-    }
-}, 250));
+// ===== 初始化所有功能 =====
+function init() {
+    createParticles();
+    initCardFlip();
+    initVideoModal();
+    initSkillBars();
+    initNavbar();
+    initSmoothScroll();
+    animateNumbers();
+    initMouseFollow();
+    initPageLoad();
+}
 
-console.log('✅ 像素风简历脚本加载完成');
+// 启动
+init();
+
+// ===== 控制台彩蛋 =====
+console.log(`
+%c🎮 游戏买量专家简历 %c🚀
+%c欢迎访问我的个人网站！%c
+
+💼 工作经历：5 年 + 游戏买量经验
+📊 累计投放：5 亿 +
+🎯 成功案例：200+
+
+有兴趣合作？联系我吧！
+`, 
+    'font-size: 20px; font-weight: bold; color: #00f0ff;',
+    'font-size: 20px;',
+    'color: #a0a0b0;',
+    'color: #7000ff;'
+);
