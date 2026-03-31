@@ -53,58 +53,6 @@ function initCardFlip() {
     });
 }
 
-// ===== 视频弹窗 =====
-function initVideoModal() {
-    const modal = document.getElementById('video-modal');
-    const video = document.getElementById('modal-video');
-    const closeBtn = document.querySelector('.modal-close');
-    const projectCards = document.querySelectorAll('.project-card');
-
-    // 示例视频 URL（实际使用时替换为你的视频）
-    const videoSources = {
-        video1: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        video2: 'https://www.w3schools.com/html/movie.mp4',
-        video3: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        video4: 'https://www.w3schools.com/html/movie.mp4'
-    };
-
-    projectCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const videoId = card.getAttribute('data-video');
-            const videoSrc = videoSources[videoId];
-            
-            if (videoSrc) {
-                video.src = videoSrc;
-                modal.classList.add('active');
-                video.play();
-            }
-        });
-    });
-
-    closeBtn.addEventListener('click', () => {
-        modal.classList.remove('active');
-        video.pause();
-        video.src = '';
-    });
-
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.remove('active');
-            video.pause();
-            video.src = '';
-        }
-    });
-
-    // ESC 键关闭
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            modal.classList.remove('active');
-            video.pause();
-            video.src = '';
-        }
-    });
-}
-
 // ===== 技能条动画 =====
 function initSkillBars() {
     const skillBars = document.querySelectorAll('.skill-fill');
@@ -130,7 +78,7 @@ function initNavbar() {
             navbar.style.background = 'rgba(10, 10, 18, 0.98)';
             navbar.style.boxShadow = '0 5px 30px rgba(0, 240, 255, 0.2)';
         } else {
-            navbar.style.background = 'rgba(10, 10, 18, 0.9)';
+            navbar.style.background = 'rgba(10, 10, 18, 0.95)';
             navbar.style.boxShadow = 'none';
         }
     });
@@ -161,19 +109,28 @@ function animateNumbers() {
             if (entry.isIntersecting) {
                 const target = entry.target;
                 const text = target.textContent;
+                
+                // 处理特殊格式（如百分比、货币符号）
+                if (text.includes('%') || text.includes('$') || text.includes('→')) {
+                    // 不动画，直接显示
+                    return;
+                }
+                
                 const number = parseInt(text.replace(/\D/g, ''));
                 const suffix = text.replace(/[0-9]/g, '');
                 
-                let current = 0;
-                const increment = number / 50;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= number) {
-                        current = number;
-                        clearInterval(timer);
-                    }
-                    target.textContent = Math.floor(current) + suffix;
-                }, 30);
+                if (number) {
+                    let current = 0;
+                    const increment = number / 50;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= number) {
+                            current = number;
+                            clearInterval(timer);
+                        }
+                        target.textContent = Math.floor(current) + suffix;
+                    }, 30);
+                }
                 
                 observer.unobserve(target);
             }
@@ -181,22 +138,6 @@ function animateNumbers() {
     }, { threshold: 0.5 });
 
     statNumbers.forEach(num => observer.observe(num));
-}
-
-// ===== 鼠标跟随效果 =====
-function initMouseFollow() {
-    const cards = document.querySelectorAll('.project-card, .stat-card');
-    
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
-        });
-    });
 }
 
 // ===== 页面加载动画 =====
@@ -216,12 +157,10 @@ function init() {
     try {
         createParticles();
         initCardFlip();
-        initVideoModal();
         initSkillBars();
         initNavbar();
         initSmoothScroll();
         animateNumbers();
-        initMouseFollow();
         initPageLoad();
         console.log('✅ 所有功能初始化成功');
     } catch (error) {
@@ -238,14 +177,17 @@ if (document.readyState === 'loading') {
 
 // ===== 控制台彩蛋 =====
 console.log(`
-%c🎮 游戏买量专家简历 %c🚀
-%c欢迎访问我的个人网站！%c
+%c🎮 曹仁 - 游戏买量素材创意专家 %c🚀
+%c欢迎访问我的个人简历网站！%c
 
-💼 工作经历：5 年 + 游戏买量经验
-📊 累计投放：5 亿 +
-🎯 成功案例：200+
+💼 工作经验：8 年 + 游戏买量素材经验
+🎯 擅长品类：SLG/MMO/MOBA/三消/卡牌
+📊 核心业绩：T1 CTR 0.9% → 2.2%, CPI $10 → $1.6
+🎨 全栈能力：AE/PR/UE/3D Max/AI 工具
 
 有兴趣合作？联系我吧！
+📱 18510980584
+📧 932120004@qq.com
 `, 
     'font-size: 20px; font-weight: bold; color: #00f0ff;',
     'font-size: 20px;',
