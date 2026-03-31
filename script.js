@@ -213,19 +213,28 @@ function initPageLoad() {
 
 // ===== 初始化所有功能 =====
 function init() {
-    createParticles();
-    initCardFlip();
-    initVideoModal();
-    initSkillBars();
-    initNavbar();
-    initSmoothScroll();
-    animateNumbers();
-    initMouseFollow();
-    initPageLoad();
+    try {
+        createParticles();
+        initCardFlip();
+        initVideoModal();
+        initSkillBars();
+        initNavbar();
+        initSmoothScroll();
+        animateNumbers();
+        initMouseFollow();
+        initPageLoad();
+        console.log('✅ 所有功能初始化成功');
+    } catch (error) {
+        console.error('❌ 初始化错误:', error);
+    }
 }
 
-// 启动
-init();
+// 等待 DOM 加载完成
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
 
 // ===== 控制台彩蛋 =====
 console.log(`
