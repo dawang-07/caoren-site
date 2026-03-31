@@ -40,6 +40,32 @@ body {
     height: 100%;
     z-index: -1;
     background: radial-gradient(ellipse at bottom, #1a1a2e 0%, #0a0a12 100%);
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(0, 240, 255, 0.5);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
+    animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+    0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(100px);
+        opacity: 0;
+    }
 }
 
 /* ===== 导航栏 ===== */
@@ -143,11 +169,75 @@ body {
     }
 }
 
+/* 主角卡牌 */
+.hero-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 3px solid rgba(0, 240, 255, 0.3);
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.hero-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 50px rgba(0, 240, 255, 0.5);
+    transform: translateY(-5px);
+}
+
+.card-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, transparent 70%);
+    animation: rotate 10s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.avatar-frame {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
+    overflow: hidden;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 30px rgba(0, 240, 255, 0.5); }
+    50% { box-shadow: 0 0 50px rgba(0, 240, 255, 0.8); }
+}
+
+.avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    background: var(--gradient-1);
+    color: white;
+}
+
 .hero-title {
     font-family: 'Orbitron', sans-serif;
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 900;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     background: var(--gradient-1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -168,49 +258,61 @@ body {
 }
 
 .hero-subtitle {
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
     color: var(--text-secondary);
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .hero-info {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-    font-size: 1rem;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
     color: var(--primary-color);
 }
 
-.hero-stats {
+.hero-info span {
+    background: rgba(0, 240, 255, 0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 240, 255, 0.3);
+}
+
+/* 战绩面板 */
+.stats-panel {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 2rem;
-    margin-bottom: 3rem;
+    gap: 1.5rem;
+    margin: 2rem 0;
 }
 
-.stat-card {
+.stat-item {
     background: var(--bg-card);
     border: 2px solid rgba(0, 240, 255, 0.3);
     border-radius: 15px;
-    padding: 2rem 3rem;
-    min-width: 200px;
+    padding: 1.5rem 2rem;
+    min-width: 180px;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    text-align: center;
 }
 
-.stat-card:hover {
-    transform: translateY(-10px);
+.stat-item:hover {
+    transform: translateY(-5px);
     border-color: var(--primary-color);
-    box-shadow: 0 20px 40px rgba(0, 240, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 240, 255, 0.3);
 }
 
-.stat-number {
+.stat-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
     font-family: 'Orbitron', sans-serif;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     font-weight: 900;
     background: var(--gradient-1);
     -webkit-background-clip: text;
@@ -221,7 +323,7 @@ body {
 .stat-label {
     color: var(--text-secondary);
     margin-top: 0.5rem;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .cta-button {
@@ -266,6 +368,17 @@ body {
 .cta-button:hover .button-glow {
     width: 300px;
     height: 300px;
+}
+
+.start-game {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    animation: pulseButton 2s ease-in-out infinite;
+}
+
+@keyframes pulseButton {
+    0%, 100% { box-shadow: 0 0 20px rgba(0, 240, 255, 0.5); }
+    50% { box-shadow: 0 0 40px rgba(0, 240, 255, 0.8); }
 }
 
 .scroll-indicator {
@@ -313,7 +426,7 @@ body {
 
 .profile-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     max-width: 1400px;
     margin: 0 auto;
@@ -326,12 +439,33 @@ body {
     padding: 2rem;
     text-align: center;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .profile-card:hover {
     transform: translateY(-10px);
     border-color: var(--primary-color);
     box-shadow: 0 20px 40px rgba(0, 240, 255, 0.3);
+}
+
+/* 卡牌稀有度边框 */
+.card-rarity {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+}
+
+.rarity-ssr {
+    background: linear-gradient(90deg, #ffd700, #ffaa00, #ffd700);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.rarity-sr {
+    background: linear-gradient(90deg, #00f0ff, #7000ff, #00f0ff);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
 }
 
 .profile-icon {
@@ -356,11 +490,6 @@ body {
     line-height: 1.8;
 }
 
-/* ===== 工作经历 ===== */
-.experience {
-    padding: 6rem 5%;
-}
-
 .section-title {
     font-family: 'Orbitron', sans-serif;
     font-size: clamp(2rem, 5vw, 3.5rem);
@@ -374,6 +503,11 @@ body {
 
 .title-icon {
     font-size: 1.2em;
+}
+
+/* ===== 工作经历 ===== */
+.experience {
+    padding: 6rem 5%;
 }
 
 .timeline {
@@ -435,7 +569,7 @@ body {
 .card-3d {
     position: relative;
     width: 100%;
-    min-height: 280px;
+    min-height: 300px;
     transform-style: preserve-3d;
     transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -447,13 +581,14 @@ body {
 .card-front, .card-back {
     position: absolute;
     width: 100%;
-    min-height: 280px;
+    min-height: 300px;
     backface-visibility: hidden;
     border-radius: 20px;
     padding: 2rem;
     background: var(--bg-card);
     border: 2px solid rgba(0, 240, 255, 0.3);
     overflow-y: auto;
+    max-height: 500px;
 }
 
 .card-front {
@@ -520,6 +655,10 @@ body {
     margin-bottom: 1rem;
 }
 
+.achievement-badge.gold {
+    background: var(--gradient-gold);
+}
+
 .card-hint {
     color: var(--accent-color);
     font-size: 0.8rem;
@@ -530,7 +669,7 @@ body {
 .metrics-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: 0.8rem;
     margin-top: 1rem;
 }
 
@@ -553,8 +692,15 @@ body {
     display: block;
     font-family: 'Orbitron', sans-serif;
     font-weight: 700;
-    color: var(--primary-color);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+}
+
+.metric-value.up {
+    color: #00ff88;
+}
+
+.metric-value.down {
+    color: #ff6b6b;
 }
 
 /* ===== 教育经历 ===== */
@@ -611,7 +757,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     max-width: 1000px;
-    margin: 0 auto;
+    margin: 0 auto 3rem;
 }
 
 .portfolio-card {
@@ -658,46 +804,162 @@ body {
     transform: translateX(10px);
 }
 
-/* ===== 技能 ===== */
+/* B 站视频区 */
+.video-section {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.video-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.video-card {
+    background: var(--bg-card);
+    border: 2px solid rgba(0, 240, 255, 0.2);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.video-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(0, 240, 255, 0.3);
+    transform: translateY(-5px);
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.bilibili-link {
+    display: block;
+    padding: 1rem;
+    background: rgba(0, 240, 255, 0.1);
+    color: var(--primary-color);
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border-top: 1px solid rgba(0, 240, 255, 0.2);
+}
+
+.bilibili-link:hover {
+    background: rgba(0, 240, 255, 0.2);
+    color: var(--text-primary);
+}
+
+.video-hint {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}
+
+/* ===== 技能树 ===== */
 .skills {
     padding: 6rem 5%;
     background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-card) 100%);
 }
 
-.skills-container {
-    max-width: 800px;
+.skill-tree {
+    max-width: 1000px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
 }
 
-.skill-category {
-    margin-bottom: 2rem;
+.skill-branch {
+    background: var(--bg-card);
+    border: 2px solid rgba(0, 240, 255, 0.2);
+    border-radius: 20px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
 }
 
-.skill-category h3 {
-    font-size: 1.1rem;
+.skill-branch:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(0, 240, 255, 0.3);
+}
+
+.skill-branch h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(0, 240, 255, 0.3);
+}
+
+.skill-node {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(0, 240, 255, 0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 240, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.skill-node:hover {
+    background: rgba(0, 240, 255, 0.1);
+    border-color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+.node-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.node-name {
+    font-weight: 600;
     margin-bottom: 0.5rem;
     color: var(--text-primary);
 }
 
-.skill-bar {
+.node-bar {
     width: 100%;
-    height: 12px;
+    height: 8px;
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
+    border-radius: 4px;
     overflow: hidden;
-    position: relative;
+    margin-bottom: 0.5rem;
 }
 
-.skill-fill {
+.node-fill {
     height: 100%;
     background: var(--gradient-1);
-    border-radius: 6px;
+    border-radius: 4px;
     width: 0;
     transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
 }
 
-.skill-fill::after {
+.node-fill::after {
     content: '';
     position: absolute;
     top: 0;
@@ -713,37 +975,84 @@ body {
     50% { opacity: 1; }
 }
 
-.skill-percent {
-    float: right;
-    color: var(--primary-color);
-    font-weight: 700;
+.node-level {
     font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    text-align: right;
+    font-weight: 700;
 }
 
-/* ===== 联系 ===== */
+/* ===== 联系方式 - NPC 对话框 ===== */
 .contact {
     padding: 6rem 5%;
     text-align: center;
 }
 
-.contact-info {
+.npc-dialogue {
     display: flex;
-    flex-wrap: wrap;
+    align-items: flex-start;
     justify-content: center;
-    gap: 2rem;
-    margin: 3rem 0;
+    gap: 1.5rem;
+    max-width: 700px;
+    margin: 3rem auto;
+    flex-wrap: wrap;
+}
+
+.npc-avatar {
+    font-size: 5rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.dialogue-box {
+    background: var(--bg-card);
+    border: 2px solid rgba(0, 240, 255, 0.3);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: left;
+    position: relative;
+    flex: 1;
+    min-width: 300px;
+}
+
+.dialogue-box::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 10px 10px 10px 0;
+    border-style: solid;
+    border-color: transparent rgba(0, 240, 255, 0.3) transparent transparent;
+}
+
+.npc-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.dialogue-text {
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.contact-list {
+    margin-top: 1rem;
 }
 
 .contact-item {
     display: flex;
     align-items: center;
     gap: 1rem;
-    font-size: 1.1rem;
-    color: var(--text-secondary);
+    padding: 0.5rem 0;
+    font-size: 1rem;
 }
 
 .contact-icon {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 .contact-item a {
@@ -761,6 +1070,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
+    margin-top: 2rem;
 }
 
 /* ===== 响应式 ===== */
@@ -782,12 +1092,12 @@ body {
         margin-left: 60px !important;
     }
 
-    .hero-stats {
+    .stats-panel {
         flex-direction: column;
         align-items: center;
     }
 
-    .stat-card {
+    .stat-item {
         width: 100%;
         max-width: 300px;
     }
@@ -818,5 +1128,18 @@ body {
     .contact-actions {
         flex-direction: column;
         align-items: center;
+    }
+
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .npc-dialogue {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dialogue-box::before {
+        display: none;
     }
 }

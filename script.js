@@ -1,46 +1,23 @@
 // ===== 粒子效果 =====
 function createParticles() {
     const particlesContainer = document.getElementById('particles');
-    const particleCount = 100;
+    const particleCount = 80;
 
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
-        particle.style.cssText = `
-            position: absolute;
-            width: ${Math.random() * 4 + 1}px;
-            height: ${Math.random() * 4 + 1}px;
-            background: rgba(0, 240, 255, ${Math.random() * 0.5 + 0.3});
-            border-radius: 50%;
-            left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
-            animation: float ${Math.random() * 10 + 10}s linear infinite;
-            box-shadow: 0 0 ${Math.random() * 10 + 5}px rgba(0, 240, 255, 0.8);
-        `;
+        particle.className = 'particle';
+        
+        const size = Math.random() * 4 + 2;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.animationDuration = `${Math.random() * 10 + 15}s`;
+        particle.style.animationDelay = `${Math.random() * 10}s`;
+        particle.style.opacity = Math.random() * 0.5 + 0.3;
+        
         particlesContainer.appendChild(particle);
     }
 }
-
-// 添加浮动动画
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes float {
-        0% {
-            transform: translateY(0) translateX(0);
-            opacity: 0;
-        }
-        10% {
-            opacity: 1;
-        }
-        90% {
-            opacity: 1;
-        }
-        100% {
-            transform: translateY(-100vh) translateX(${Math.random() * 100 - 50}px);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
 
 // ===== 卡片翻转 =====
 function initCardFlip() {
@@ -53,20 +30,29 @@ function initCardFlip() {
     });
 }
 
-// ===== 技能条动画 =====
-function initSkillBars() {
-    const skillBars = document.querySelectorAll('.skill-fill');
+// ===== 技能树动画 =====
+function initSkillTree() {
+    const skillNodes = document.querySelectorAll('.skill-node');
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const percent = entry.target.getAttribute('data-percent');
-                entry.target.style.width = percent + '%';
+                const node = entry.target;
+                const level = node.getAttribute('data-level');
+                const fill = node.querySelector('.node-fill');
+                
+                if (fill && level) {
+                    setTimeout(() => {
+                        fill.style.width = level + '%';
+                    }, 300);
+                }
+                
+                observer.unobserve(node);
             }
         });
     }, { threshold: 0.5 });
 
-    skillBars.forEach(bar => observer.observe(bar));
+    skillNodes.forEach(node => observer.observe(node));
 }
 
 // ===== 导航栏滚动效果 =====
@@ -102,7 +88,7 @@ function initSmoothScroll() {
 
 // ===== 数字滚动动画 =====
 function animateNumbers() {
-    const statNumbers = document.querySelectorAll('.stat-number');
+    const statValues = document.querySelectorAll('.stat-value');
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -110,8 +96,8 @@ function animateNumbers() {
                 const target = entry.target;
                 const text = target.textContent;
                 
-                // 处理特殊格式（如百分比、货币符号）
-                if (text.includes('%') || text.includes('$') || text.includes('→')) {
+                // 处理特殊格式（如百分比、货币符号、箭头）
+                if (text.includes('%') || text.includes('$') || text.includes('→') || text.includes('年') || text.includes('品类')) {
                     // 不动画，直接显示
                     return;
                 }
@@ -137,7 +123,7 @@ function animateNumbers() {
         });
     }, { threshold: 0.5 });
 
-    statNumbers.forEach(num => observer.observe(num));
+    statValues.forEach(num => observer.observe(num));
 }
 
 // ===== 页面加载动画 =====
@@ -152,16 +138,69 @@ function initPageLoad() {
     });
 }
 
+// ===== 视频卡片悬停效果 =====
+function initVideoCards() {
+    const videoCards = document.querySelectorAll('.video-card');
+    
+    videoCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-10px)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+        });
+    });
+}
+
+// ===== 移动端菜单切换 =====
+function initMobileMenu() {
+    const navbar = document.querySelector('.navbar');
+    
+    // 检测是否需要移动端菜单
+    if (window.innerWidth <= 768) {
+        const menuToggle = document.createElement('button');
+        menuToggle.innerHTML = '☰';
+        menuToggle.style.cssText = `
+            background: var(--gradient-1);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        `;
+        
+        navbar.appendChild(menuToggle);
+        
+        menuToggle.addEventListener('click', () => {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'rgba(10, 10, 18, 0.98)';
+                navLinks.style.padding = '1rem';
+            }
+        });
+    }
+}
+
 // ===== 初始化所有功能 =====
 function init() {
     try {
         createParticles();
         initCardFlip();
-        initSkillBars();
+        initSkillTree();
         initNavbar();
         initSmoothScroll();
         animateNumbers();
         initPageLoad();
+        initVideoCards();
+        initMobileMenu();
         console.log('✅ 所有功能初始化成功');
     } catch (error) {
         console.error('❌ 初始化错误:', error);
