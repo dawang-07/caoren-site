@@ -19,17 +19,6 @@ function createParticles() {
     }
 }
 
-// ===== 卡片翻转 =====
-function initCardFlip() {
-    const cards = document.querySelectorAll('.card-3d');
-    
-    cards.forEach(card => {
-        card.addEventListener('click', () => {
-            card.classList.toggle('flipped');
-        });
-    });
-}
-
 // ===== 技能树动画 =====
 function initSkillTree() {
     const skillNodes = document.querySelectorAll('.skill-node');
@@ -195,11 +184,44 @@ function initStatCards() {
     });
 }
 
+// ===== 任务日志弹窗 =====
+function initModal() {
+    const modalContainer = document.getElementById('modal-container');
+    const experienceCards = document.querySelectorAll('.experience-card');
+    
+    experienceCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const modalId = card.getAttribute('data-modal-target');
+            const modal = document.getElementById(modalId);
+            
+            if (modal && modalContainer) {
+                modalContainer.classList.add('active');
+                modal.classList.add('active');
+            }
+        });
+    });
+    
+    if (modalContainer) {
+        modalContainer.addEventListener('click', (e) => {
+            if (e.target === modalContainer || e.target.classList.contains('modal-close')) {
+                closeModal(modalContainer);
+            }
+        });
+    }
+}
+
+function closeModal(modalContainer) {
+    modalContainer.classList.remove('active');
+    const activeModal = modalContainer.querySelector('.modal.active');
+    if (activeModal) {
+        activeModal.classList.remove('active');
+    }
+}
+
 // ===== 初始化所有功能 =====
 function init() {
     try {
         createParticles();
-        initCardFlip();
         initSkillTree();
         initNavbar();
         initMobileMenu();
@@ -208,7 +230,8 @@ function init() {
         initPageLoad();
         initVideoCards();
         initStatCards();
-        console.log('✅ Gemini 版本 - 所有功能初始化成功');
+        initModal();
+        console.log('✅ Gemini v2 Modal - 所有功能初始化成功');
     } catch (error) {
         console.error('❌ 初始化错误:', error);
     }
