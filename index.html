@@ -3,283 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>曹仁 - 赛博电玩 HUD</title>
+    <title>曹仁 - 赛博未来简历</title>
     <meta name="description" content="8 年游戏买量素材经验，擅长 SLG/MMO/MOBA/三消/卡牌全品类，CTR 从 0.9% 提升至 2.2%，CPI 从$10 降至$1.6">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=cyber-pixel-v1">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=cyber-streamlined-v2">
 </head>
 <body>
-    <div class="background">
-        <div class="grid"></div>
-        <div class="scanlines"></div>
-        <div class="glow-layer"></div>
+    <div class="background-effects">
+        <div class="background-grid"></div>
+        <div class="background-glow"></div>
     </div>
 
     <div class="container">
-        <!-- 导航 -->
-        <nav class="navbar">
-            <div class="logo glitch" data-text="CR.">CR.</div>
-            <ul class="nav-links">
-                <li><a href="#home" class="nav-link active">主界面</a></li>
-                <li><a href="#profile" class="nav-link">战斗模块</a></li>
-                <li><a href="#experience" class="nav-link">任务档案</a></li>
-                <li><a href="#portfolio" class="nav-link">军火库</a></li>
-                <li><a href="#contact" class="nav-link">通讯链接</a></li>
-            </ul>
-        </nav>
-
-        <!-- 主驾驶舱 HUD -->
-        <header id="home" class="section hero">
-            <div class="hero-grid">
-                <div class="hud-panel player-card">
-                    <div class="panel-header">
-                        <span class="header-light"></span>
-                        <h2 class="panel-title">ID CARD</h2>
-                    </div>
-                    <div class="panel-content">
-                        <div class="player-avatar">
-                            <img src="https://i.imgur.com/eBq62nF.png" alt="赛博像素头像">
-                            <div class="avatar-scanline"></div>
-                        </div>
-                        <div class="player-info">
-                            <p><strong>ID:</strong> CAO REN</p>
-                            <p><strong>职业:</strong> 素材创意专家</p>
-                            <p><strong>等级:</strong> 8 (8年+)</p>
-                        </div>
-                    </div>
+        <!-- 头部 -->
+        <header class="hero">
+            <div class="hero-title-group">
+                <h1 class="hero-title" data-text="曹仁">曹仁</h1>
+                <p class="hero-subtitle">素材创意专家 / 广告视频制作 / 发行项目负责人</p>
+            </div>
+            <div class="hero-metrics">
+                <div class="metric-card">
+                    <span class="metric-value" data-text="↑144%">↑144%</span>
+                    <span class="metric-label">T1 CTR 提升</span>
                 </div>
-
-                <div class="hero-main">
-                    <h1 class="hero-title glitch" data-text="曹仁">曹仁</h1>
-                    <p class="hero-subtitle">[ 素材创意 / 视频制作 / 项目管理 ]</p>
+                <div class="metric-card">
+                    <span class="metric-value" data-text="↓84%">↓84%</span>
+                    <span class="metric-label">T1 CPI 成本</span>
                 </div>
-
-                <div class="hud-panel stats-card">
-                    <div class="panel-header">
-                        <span class="header-light"></span>
-                        <h2 class="panel-title">实时数据</h2>
-                    </div>
-                    <div class="panel-content">
-                        <div class="stat-item">
-                            <label>CTR 优化</label>
-                            <div class="stat-value highlight-green">0.9% ➔ 2.2%</div>
-                            <div class="progress-bar"><div class="progress-fill green" style="width: 75%;"></div></div>
-                        </div>
-                        <div class="stat-item">
-                            <label>CPI 控制</label>
-                            <div class="stat-value highlight-green">$10 ➔ $1.6</div>
-                            <div class="progress-bar"><div class="progress-fill green" style="width: 84%;"></div></div>
-                        </div>
-                        <div class="stat-item">
-                            <label>全品类覆盖</label>
-                            <div class="stat-value">SLG/MMO/MOBA+</div>
-                            <div class="progress-bar"><div class="progress-fill blue" style="width: 100%;"></div></div>
-                        </div>
-                    </div>
+                <div class="metric-card">
+                    <span class="metric-value" data-text="8年+">8年+</span>
+                    <span class="metric-label">游戏买量经验</span>
                 </div>
             </div>
         </header>
 
-        <!-- 核心战斗模块 -->
-        <section id="profile" class="section">
-            <h2 class="section-title glitch" data-text="核心战斗模块">核心战斗模块</h2>
-            <div class="module-grid">
-                <div class="module-card">
-                    <div class="card-icon">🎨</div>
-                    <h3>全栈制作把控</h3>
-                    <p>游戏设计出身，精通 AE/PR/UE/3D Max，将抽象卖点转化为高转化视觉语言。</p>
-                </div>
-                <div class="module-card">
-                    <div class="card-icon">📊</div>
-                    <h3>数据驱动创意</h3>
-                    <p>成熟的 "洞察-测试-迭代" 闭环，以 CTR/CVR 数据反推创意方向。</p>
-                </div>
-                <div class="module-card">
-                    <div class="card-icon">🎯</div>
-                    <h3>全品类驾驭</h3>
-                    <p>重度/中轻度全覆盖，国内海外双市场经验。</p>
-                </div>
-                <div class="module-card">
-                    <div class="card-icon">⚡</div>
-                    <h3>中台基建</h3>
-                    <p>从 0 到 1 搭建素材中台，运用 AI 工具大幅提升团队人效比。</p>
-                </div>
-                <div class="module-card">
-                    <div class="card-icon">🤝</div>
-                    <h3>跨职能协同</h3>
-                    <p>深度介入研发，提供前置吸量测试支持，验证产品美术风格。</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 任务档案馆 -->
-        <section id="experience" class="section">
-            <h2 class="section-title glitch" data-text="任务档案馆">任务档案馆</h2>
-            <div class="timeline">
-                <div class="timeline-item" data-modal-target="exp-yuanbao">
-                    <div class="timeline-connector"></div>
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>元保集团 <span class="time-range">[2023.10-至今]</span></h3>
-                        <p>职位：素材创意制作</p>
-                        <div class="badge yellow">股份激励</div>
-                    </div>
-                </div>
-                <div class="timeline-item" data-modal-target="exp-diandian">
-                    <div class="timeline-connector"></div>
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>点点互动 <span class="time-range">[2024.08-2024.09]</span></h3>
-                        <p>职位：创意策划</p>
-                    </div>
-                </div>
-                <div class="timeline-item" data-modal-target="exp-jingji">
-                    <div class="timeline-connector"></div>
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>竞技世界 <span class="time-range">[2019.06-2024.03]</span></h3>
-                        <p>职位：发行素材项目负责人</p>
-                        <div class="badge yellow">最佳新锐奖</div>
-                    </div>
-                </div>
-                <div class="timeline-item" data-modal-target="exp-zhangyou">
-                    <div class="timeline-connector"></div>
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>掌游天下 <span class="time-range">[2018.07-2019.06]</span></h3>
-                        <p>职位：Playable 广告创意</p>
-                    </div>
-                </div>
-            </div>
-             <div class="education-card hud-panel">
-                 <div class="panel-header"><span class="header-light"></span><h2 class="panel-title">教育背景</h2></div>
-                 <div class="panel-content">
-                     <h3>内蒙古师范大学 <span class="time-range">[2014-2018]</span></h3>
-                     <p>游戏设计专业 | 本科</p>
-                 </div>
-            </div>
-        </section>
-
-        <!-- 军火库 -->
-        <section id="portfolio" class="section">
-            <h2 class="section-title glitch" data-text="军火库">军火库</h2>
-            <div class="arsenal-grid">
-                <a href="https://space.bilibili.com/233305892" target="_blank" class="arsenal-card">
-                    <div class="arsenal-icon">📺</div>
-                    <h3>B 站作品集</h3>
-                    <p>在线视频合集</p>
-                    <div class="card-footer">查看</div>
-                </a>
-                <a href="https://pan.baidu.com/s/1541FC4d7eX_ZvrY1wf73hw?pwd=6666" target="_blank" class="arsenal-card">
-                    <div class="arsenal-icon">📁</div>
-                    <h3>网盘作品集</h3>
-                    <p>高清文件下载</p>
-                    <div class="card-footer">下载</div>
-                </a>
-            </div>
-            <div class="hud-panel video-panel">
-                <div class="panel-header"><span class="header-light"></span><h2 class="panel-title">视频预览</h2></div>
-                <div class="panel-content video-grid">
-                    <div class="video-container">
-                        <iframe src="https://player.bilibili.com/player.html?bvid=YOUR_BVID_1&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
-                    </div>
-                    <div class="video-container">
-                        <iframe src="https://player.bilibili.com/player.html?bvid=YOUR_BVID_2&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
-                    </div>
-                    <div class="video-container">
-                        <iframe src="https://player.bilibili.com/player.html?bvid=YOUR_BVID_3&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- 通讯链接 -->
-        <section id="contact" class="section">
-            <h2 class="section-title glitch" data-text="通讯链接">通讯链接</h2>
-            <div class="contact-grid">
-                <div class="hud-panel contact-card">
-                    <div class="panel-header"><span class="header-light"></span><h2 class="panel-title">INCOMING CALL...</h2></div>
-                    <div class="panel-content">
-                        <div class="contact-avatar">
+        <main>
+            <!-- 关于我 (信息 + 优势) -->
+            <section class="section about-me-panel">
+                <div class="panel-grid">
+                    <div class="info-column">
+                        <div class="info-avatar">
                             <img src="https://i.imgur.com/eBq62nF.png" alt="赛博像素头像">
                         </div>
-                        <div class="contact-info">
-                            <p class="contact-name">曹仁</p>
-                            <p>📱 <a href="tel:18510980584">18510980584</a></p>
-                            <p>📧 <a href="mailto:932120004@qq.com">932120004@qq.com</a></p>
-                            <p>📍 北京</p>
+                        <ul class="info-list">
+                            <li><strong>年龄:</strong> 30 岁</li>
+                            <li><strong>电话:</strong> <a href="tel:18510980584">18510980584</a></li>
+                            <li><strong>邮箱:</strong> <a href="mailto:932120004@qq.com">932120004@qq.com</a></li>
+                            <li><strong>地点:</strong> 北京</li>
+                        </ul>
+                    </div>
+                    <div class="skills-column">
+                        <h2 class="skills-title">核心优势</h2>
+                        <ul class="skills-list">
+                            <li><span class="skill-icon">🎨</span><strong>全栈制作把控:</strong> 游戏设计专业出身，精通 AE/PR/UE/3D Max。</li>
+                            <li><span class="skill-icon">📊</span><strong>数据驱动创意:</strong> 成熟的 "洞察-测试-迭代" 闭环，以数据反推创意。</li>
+                            <li><span class="skill-icon">🎯</span><strong>全品类驾驭:</strong> 覆盖重度/中轻度游戏，具备国内海外双市场经验。</li>
+                            <li><span class="skill-icon">⚡</span><strong>中台基建:</strong> 从 0 到 1 搭建素材中台，引入 AI 工具提升人效。</li>
+                            <li><span class="skill-icon">🤝</span><strong>跨职能协同:</strong> 深度介入研发，提供前置吸量测试支持。</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 工作经历 -->
+            <section class="section">
+                <h2 class="section-title">工作经历</h2>
+                <div class="timeline accordion-container">
+                    <!-- 元保集团 -->
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <div class="header-info">
+                                <h3>元保集团</h3>
+                                <p>素材创意制作 [2023.10 - 至今]</p>
+                            </div>
+                            <span class="accordion-icon">[ + ]</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="content-inner">
+                                <h4>🏆 核心成就</h4>
+                                <ul>
+                                    <li>业务线从 0 到 1 搭建，入职半年获公司股份激励。</li>
+                                    <li>负责国内 IAA/IAP 小游戏的核心素材创意与制作闭环。</li>
+                                    <li>从 0 到 1 搭建并完善内部发行素材产出标准、归档流程与质量验收体系。</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="contact-actions">
-                            <a href="tel:18510980584" class="btn green">接受通讯</a>
-                            <a href="mailto:932120004@qq.com" class="btn blue">发送消息</a>
+                    </div>
+                    <!-- 点点互动 -->
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <div class="header-info">
+                                <h3>点点互动</h3>
+                                <p>创意策划 [2024.08 - 2024.09]</p>
+                            </div>
+                            <span class="accordion-icon">[ + ]</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="content-inner">
+                                <h4>📋 核心职责</h4>
+                                <ul>
+                                    <li>负责公司核心业务——国内模拟经营类产品的信息流广告创意深挖。</li>
+                                    <li>Playable 广告的创意策划及高转化互动逻辑设计。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 竞技世界 -->
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <div class="header-info">
+                                <h3>竞技世界</h3>
+                                <p>发行素材项目负责人 [2019.06 - 2024.03]</p>
+                            </div>
+                            <span class="accordion-icon">[ + ]</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="content-inner">
+                                <h4>🎖️ 核心成就</h4>
+                                <ul>
+                                    <li>手游发行部初创成员，首年获"公司最佳新锐奖"。</li>
+                                    <li>负责项目：SLG、MMO、MOBA、三消、卡牌等全品类矩阵。</li>
+                                </ul>
+                                <h4>🌟 核心业绩案例 (SLG《King of septsea》)</h4>
+                                <div class="metrics-grid">
+                                    <div><span>T1 CTR:</span><span class="highlight-green">0.9% → 2.2%</span></div>
+                                    <div><span>T1 CPI:</span><span class="highlight-green">$10 → $1.6</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 掌游天下 -->
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <div class="header-info">
+                                <h3>掌游天下</h3>
+                                <p>Playable 广告创意 [2018.07 - 2019.06]</p>
+                            </div>
+                            <span class="accordion-icon">[ + ]</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="content-inner">
+                                <h4>📋 核心职责</h4>
+                                <ul>
+                                    <li>负责多品类休闲及中重度游戏的 Playable (可玩广告) 创意制作。</li>
+                                    <li>深入拆解游戏核心玩法，设计诱导点击的沉浸式“互动体验”。</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <!-- 作品集与教育 -->
+            <section class="section">
+                 <div class="grid-2-col">
+                    <div class="panel">
+                        <h2 class="section-title">作品集</h2>
+                        <div class="portfolio-links">
+                            <a href="https://space.bilibili.com/233305892" target="_blank" class="portfolio-card">
+                                <span class="portfolio-icon">📺</span>
+                                <div>
+                                    <h3>B 站作品集</h3>
+                                    <p>在线视频合集</p>
+                                </div>
+                            </a>
+                            <a href="https://pan.baidu.com/s/1541FC4d7eX_ZvrY1wf73hw?pwd=6666" target="_blank" class="portfolio-card">
+                                <span class="portfolio-icon">📁</span>
+                                <div>
+                                    <h3>网盘作品集</h3>
+                                    <p>高清文件下载 (码: 6666)</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                     <div class="panel">
+                        <h2 class="section-title">教育背景</h2>
+                        <div class="education-card">
+                             <span class="education-icon">🎓</span>
+                             <div>
+                                 <h3>内蒙古师范大学</h3>
+                                 <p>游戏设计专业 | 本科 [2014-2018]</p>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
 
         <footer class="footer">
-            <p>DESIGN BY [GEMINI] X [CYBER-PIXEL ENGINE]</p>
-            <p>©2026 CAO REN. CONNECTION TERMINATED.</p>
+            <p>通讯协议关闭 | 2026</p>
         </footer>
     </div>
 
-    <!-- 弹窗 -->
-    <div class="modal-backdrop" id="modalBackdrop">
-        <div class="modal-content hud-panel">
-            <div class="panel-header">
-                <span class="header-light"></span>
-                <h2 class="panel-title modal-title"></h2>
-                <button class="modal-close">×</button>
-            </div>
-            <div class="panel-content modal-body">
-                <!-- 内容由JS填充 -->
-            </div>
-        </div>
-    </div>
-    
-    <!-- 隐藏的弹窗内容 -->
-    <div id="modal-hidden-content" style="display: none;">
-        <div data-id="exp-yuanbao">
-            <h4>🏆 核心成就</h4>
-            <ul>
-                <li>业务线从 0 到 1 搭建，入职半年获公司股份激励</li>
-                <li>负责国内 IAA/IAP 小游戏的核心素材创意与制作闭环</li>
-                <li>从 0 到 1 搭建并完善内部发行素材产出标准、归档流程与质量验收体系</li>
-            </ul>
-        </div>
-        <div data-id="exp-diandian">
-            <h4>📋 核心职责</h4>
-            <ul>
-                <li>负责公司核心业务——国内模拟经营类产品的信息流广告创意深挖</li>
-                <li>Playable 广告的创意策划及高转化互动逻辑设计</li>
-            </ul>
-        </div>
-        <div data-id="exp-jingji">
-            <h4>🎖️ 核心成就</h4>
-            <ul>
-                <li>手游发行部初创成员，首年获"公司最佳新锐奖"</li>
-                <li>负责项目：SLG、MMO、MOBA、三消、卡牌等全品类矩阵</li>
-            </ul>
-            <h4>🌟 核心业绩案例 (SLG《King of septsea》)</h4>
-            <div class="metrics-grid">
-                <div><span>T1 CTR:</span><span class="highlight-green">0.9% → 2.2%</span></div>
-                <div><span>T1 CVR:</span><span class="highlight-green">35% → 52%</span></div>
-                <div><span>T1 CPI:</span><span class="highlight-green">$10 → $1.6</span></div>
-                <div><span>T3 CPI:</span><span class="highlight-green">$1.6 → $0.3</span></div>
-            </div>
-        </div>
-        <div data-id="exp-zhangyou">
-            <h4>📋 核心职责</h4>
-            <ul>
-                <li>负责多品类休闲及中重度游戏的 Playable (可玩广告) 创意制作</li>
-                <li>深入拆解游戏核心玩法，设计诱导点击的沉浸式“互动体验”</li>
-            </ul>
-        </div>
-    </div>
-
-    <script src="script.js?v=cyber-pixel-v1"></script>
+    <script src="script.js?v=cyber-streamlined-v2"></script>
 </body>
 </html>

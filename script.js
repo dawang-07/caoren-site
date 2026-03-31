@@ -1,97 +1,34 @@
-// ===== 主动导航链接 =====
-function initActiveNav() {
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('.section');
+// ===== 手风琴 (Accordion) 交互 =====
+function initAccordion() {
+    const accordionItems = document.querySelectorAll('.accordion-item');
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').substring(1) === entry.target.id) {
-                        link.classList.add('active');
-                    }
+    accordionItems.forEach(item => {
+        const header = item.querySelector('.accordion-header');
+        const content = item.querySelector('.accordion-content');
+
+        header.addEventListener('click', () => {
+            // 如果点击的是已经打开的，则关闭它
+            if (item.classList.contains('active')) {
+                item.classList.remove('active');
+                content.style.maxHeight = '0px';
+            } else {
+                // 关闭所有其他的
+                accordionItems.forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.accordion-content').style.maxHeight = '0px';
                 });
+
+                // 打开当前点击的
+                item.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + 'px';
             }
         });
-    }, { threshold: 0.5 });
-
-    sections.forEach(section => observer.observe(section));
-}
-
-// ===== 弹窗功能 =====
-function initModal() {
-    const backdrop = document.getElementById('modalBackdrop');
-    const modalContent = backdrop.querySelector('.modal-content');
-    const modalTitle = backdrop.querySelector('.modal-title');
-    const modalBody = backdrop.querySelector('.modal-body');
-    const hiddenContent = document.getElementById('modal-hidden-content');
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    
-    timelineItems.forEach(item => {
-        item.addEventListener('click', () => {
-            const modalId = item.getAttribute('data-modal-target');
-            const title = item.querySelector('h3').textContent;
-            const content = hiddenContent.querySelector(`[data-id="${modalId}"]`).innerHTML;
-            
-            modalTitle.textContent = `档案: ${title}`;
-            modalBody.innerHTML = content;
-            
-            typewriter(modalBody); // 应用打字机效果
-            backdrop.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-    });
-
-    const closeModal = () => {
-        backdrop.classList.remove('active');
-        document.body.style.overflow = '';
-    };
-
-    backdrop.querySelector('.modal-close').addEventListener('click', closeModal);
-    backdrop.addEventListener('click', (e) => {
-        if (e.target === backdrop) {
-            closeModal();
-        }
-    });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-}
-
-// ===== 打字机效果 =====
-function typewriter(element) {
-    const allElements = element.querySelectorAll('h4, li, span, div');
-    allElements.forEach(el => {
-        const text = el.innerHTML; // 保留 HTML 标签
-        el.innerHTML = '';
-        el.style.visibility = 'hidden';
-
-        setTimeout(() => {
-            el.style.visibility = 'visible';
-            let i = 0;
-            const timer = setInterval(() => {
-                if (i < text.length) {
-                    // 检查是否是标签的开始
-                    if (text.charAt(i) === '<') {
-                        const tagEnd = text.indexOf('>', i);
-                        if (tagEnd !== -1) {
-                            el.innerHTML += text.substring(i, tagEnd + 1);
-                            i = tagEnd;
-                        }
-                    } else {
-                        el.innerHTML += text.charAt(i);
-                    }
-                    i++;
-                } else {
-                    clearInterval(timer);
-                }
-            }, 10); // 打字速度
-        }, Math.random() * 200);
     });
 }
 
-// ===== 滚动动画 =====
+// ===== 滚动淡入动画 =====
 function initScrollAnimations() {
-    const elementsToAnimate = document.querySelectorAll('.hud-panel, .module-card, .timeline-item, .arsenal-card');
+    const elementsToAnimate = document.querySelectorAll('.section, .hero-metrics, .info-avatar, .skills-list, .portfolio-card, .education-card');
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -105,35 +42,39 @@ function initScrollAnimations() {
 
     elementsToAnimate.forEach(el => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
         observer.observe(el);
     });
 }
 
-// ===== 初始化 =====
+
+// ===== 初始化所有功能 =====
 function init() {
     try {
-        initActiveNav();
-        initModal();
+        initAccordion();
         initScrollAnimations();
-        console.log('✅ Cyber-Pixel Engine Initialized!');
+        console.log('[SYSTEM] Cyber-Streamlined v2 Initialized.');
     } catch (error) {
-        console.error('❌ Engine Failure:', error);
+        console.error('[SYSTEM] Initialization Failure:', error);
     }
 }
 
-document.addEventListener('DOMContentLoaded', init);
+// 确保 DOM 加载完毕后执行
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
 
 // ===== 控制台彩蛋 =====
 console.log(`%c
-   ██████╗ ██╗   ██╗ ██████╗ ███████╗ ██████╗ 
+  ██████╗ ██╗   ██╗ ██████╗ ███████╗ ██████╗ 
   ██╔════╝ ██║   ██║ ██╔══██╗ ██╔════╝ ██╔══██╗
   ██║      ██║   ██║ ██████╔╝ █████╗   ██████╔╝
   ██║      ██║   ██║ ██╔══██╗ ██╔══╝   ██╔══██╗
   ╚██████╗ ╚██████╔╝ ██║  ██║ ███████╗ ██║  ██║
    ╚═════╝  ╚═════╝  ╚═╝  ╚═╝ ╚══════╝ ╚═╝  ╚═╝
-                                               
-%c[SYSTEM ONLINE] Welcome, Operator.`, 
-'font-family: monospace; color: #f92572;', 
-'font-family: monospace; color: #00e5ff;');
+%c[CONNECTION ESTABLISHED] Welcome, Operator.`, 
+'font-family: monospace; color: #00f0ff;', 
+'font-family: monospace; color: #ff0080;');
